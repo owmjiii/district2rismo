@@ -1,9 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Logo2Rismo from '../images/2Rismo Logo.png'
+import { LoginN } from './LoginN.jsx'
+import Modal from 'react-bootstrap/Modal'
+import { BurgerOptionN } from './BurgerOptionN.jsx'
 
 function NavBarDetails() {
     const [isScrolled, setIsScrolled] = useState(false)
+
+     // dark mode 
+    const [darkMode, setDarkMode] = useState(true)
+
+    const [showLogin, setShowLogin] = useState(false)
 
     useEffect(() => {
         const updateScrollState = () => setIsScrolled(window.scrollY > 0)
@@ -22,20 +30,25 @@ function NavBarDetails() {
                 </Link>
 
                 <div className='page-navs'>
-                    
+
                 </div>
 
                 <div className='d-flex align-items-center navi-container'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 18 18">
-                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                    </svg>
+                    <button type="button" aria-label="Log in or sign up" onClick={() => setShowLogin(true)} className="bg-transparent border-0 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 18 18">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                        </svg>
+                    </button>
 
                     {/* DARK MODE NIGHT MODE ICON */}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-list" viewBox="0 0 18 18">
-                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
-                    </svg>
+                    <BurgerOptionN darkMode={darkMode} onToggleDarkMode={setDarkMode} onNotifications={() => console.log('Notifications clicked')} onHelpCenter={() => console.log('Help Center clicked')} onListProperty={() => console.log('List your property clicked')} onLogin={() => setShowLogin(true)} />
                 </div>
             </header>
+            <Modal show={showLogin} onHide={() => setShowLogin(false)} centered contentClassName="bg-transparent border-0">
+                <Modal.Body className="p-0">
+                    <LoginN onClose={() => setShowLogin(false)} />
+                </Modal.Body>
+            </Modal>
         </div>
     )
 }
