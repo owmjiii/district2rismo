@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Logo2Rismo from '../images/2Rismo Logo.png'
-import { LoginN } from './LoginN.jsx'
+import { LoginN } from './auth/LoginN.jsx'
 import Modal from 'react-bootstrap/Modal'
 import { BurgerOptionN } from './BurgerOptionN.jsx'
 

@@ -539,3 +539,254 @@
         border-radius: 1.5rem;
     }
 }
+
+/* Account */
+.account-pageN {
+    min-height: 100vh;
+    background-color: #24221B;
+    display: flex;
+    flex-direction: column;
+    background-color: #24221B;
+}
+
+.account-mainN {
+    flex: 1 0 auto;
+    padding-top: 5rem;
+}
+
+.account-mainN>.row {
+    min-height: 42vh;
+}
+
+@media (max-width: 991.98px) {
+    .account-mainN {
+        padding-top: 4.5rem;
+    }
+}
+
+/* profile sidebar */
+.profile-sidebarN {
+    flex: 0 0 250px;
+    min-height: 350px;
+    background-color: #24221B;
+    border-right: 1px solid rgb(255 178 0 / 20%);
+    --bs-list-group-bg: transparent;
+    --bs-list-group-color: #E4DFD8;
+    --bs-list-group-border-width: 0;
+    --bs-list-group-action-hover-color: #FFB200;
+    --bs-list-group-action-hover-bg: rgb(255 178 0 / 10%);
+    --bs-list-group-active-color: #FFB200;
+    --bs-list-group-active-bg: rgb(255 178 0 / 10%);
+    --bs-list-group-active-border-color: transparent;
+}
+
+.profile-sidebarN .list-group {
+    --bs-list-group-bg: transparent;
+    --bs-list-group-color: #BDBBB5;
+    --bs-list-group-border-width: 0;
+    --bs-list-group-action-hover-color: #E4DFD8;
+    --bs-list-group-action-hover-bg: transparent;
+    --bs-list-group-active-color: #E4DFD8;
+    --bs-list-group-active-bg: transparent;
+    --bs-list-group-active-border-color: transparent;
+    color: #FFB200
+}
+
+.profile-sidebarN .list-group-item.active i {
+    color: #FFB200;
+}
+
+.profile-sidebarN .list-group-item {
+    position: relative;
+    color: #E4DFD8;
+    background-color: transparent;
+}
+
+.profile-sidebarN .list-group-item.active {
+    color: #E4DFD8;
+    background-color: transparent;
+}
+
+.profile-sidebarN .list-group-item:active {
+    color: #FFB200;
+    background-color: transparent;
+}
+
+.profile-sidebarN .list-group-item.active::before {
+    position: absolute;
+    inset: .25rem 0 .25rem auto;
+    width: .2rem;
+    border-radius: .25rem 0 0 .25rem;
+    background-color: #FFB200;
+
+    content: "";
+}
+
+@media (max-width: 991.98px) {
+    .profile-sidebarN {
+        flex-basis: 100%;
+        min-height: auto;
+        border-right: 0;
+        border-bottom: 1px solid rgb(255 178 0 / 20%);
+    }
+}
+
+/* EditProfile */
+.profile-panelN {
+    min-width: 0;
+    background-color: #24221B;
+}
+
+.profile-titleN {
+    color: #FFB200;
+}
+
+.profile-labelN {
+    color: #BDBBB5;
+    font-size: .875rem;
+}
+
+.profile-inputN,
+.profile-inputN:read-only {
+    min-height: 46px;
+    border-color: #8b877e;
+    background-color: #24221B;
+    color: #E4DFD8;
+}
+
+.profile-inputN:focus {
+    border-color: #FFB200;
+    background-color: #302e27;
+    color: #fff;
+    box-shadow: 0 0 0 .2rem rgb(255 178 0 / 20%);
+}
+
+.profile-inputN::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+/* notification */
+.notifications-panelN {
+    min-width: 0;
+    background-color: #24221B;
+    max-height: 70vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.notifications-panelN::-webkit-scrollbar {
+    display: none;
+}
+
+.notifications-titleN {
+    color: #FFB200;
+}
+
+.notification-cardN {
+    border: 0;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.notification-cardN:hover,
+.notification-cardN:focus-visible {
+    background-color: #454236;
+    color: #fff;
+}
+
+.notification-cardN .notification-actionN {
+    color: #BDBBB5;
+    text-decoration: underline;
+}
+
+.notification-unread-dotN {
+    width: .6rem;
+    height: .6rem;
+    background-color: #FFB200;
+}
+
+.notification-timeN {
+    color: #BDBBB5;
+    font-size: .7rem;
+    white-space: nowrap;
+}
+
+/* My Reservation */
+.reservations-panelN {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+     max-height: 70vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.reservations-sticky-headerN {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background-color: #24221B;
+    padding-top: .25rem;
+}
+
+.reservations-panelN::-webkit-scrollbar {
+    display: none;
+}
+
+.reservations-titleN {
+    color: #FFB200;
+
+}
+
+.reservation-cardN {
+    min-height: 176px;
+    background-color: #24221B;
+    color: #E4DFD8;
+}
+
+
+.reservation-summaryN {
+    background-color: #24221B;
+}
+
+.reservation-detailsN {
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.reservation-imageN {
+    width: 158px;
+    height: 148px;
+    object-fit: cover;
+}
+
+.reservations-locationN {
+    color: #FFB200;
+}
+
+.reservation-statusN {
+    min-width: 7rem;
+    padding: .45rem .9rem;
+    background-color: #454236;
+    color: #FFB200;
+    text-align: center;
+}
+
+@media (max-width: 767.98px) {
+    .reservation-cardN {
+        min-height: 0;
+    }
+
+    .reservation-imageN {
+        width: 100%;
+        height: 180px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .reservation-imageN {
+        width: 120px;
+        height: 120px;
+    }
+}

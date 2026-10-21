@@ -1,4 +1,4 @@
-import logo from '../images/2Rismo Logo.png'
+import logo from '../../images/2Rismo Logo.png'
 import { useState } from 'react'
 import { EmailOTPN } from './EmailOTPN.jsx'
 import { SignUpN } from './SignUpN.jsx'
