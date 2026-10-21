@@ -722,13 +722,6 @@
     -ms-overflow-style: none;
 }
 
-.reservations-sticky-headerN {
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    background-color: #24221B;
-    padding-top: .25rem;
-}
 
 .reservations-panelN::-webkit-scrollbar {
     display: none;
