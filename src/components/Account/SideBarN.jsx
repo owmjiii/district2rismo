@@ -20,8 +20,15 @@ export const SideBarN = ({ onSelect, onLogout, notificationCount = 0 }) => {
     return (
         <aside className="profile-sidebarN p-2 p-lg-3">
             <nav className="list-group list-group-flush gap-1 flex-column">
-                {items.map((item) => <button key={item.label} type="button" className={`list-group-item list-group-item-action d-flex align-items-center gap-2 text-nowrap rounded-2 ${activeItem === item.label ? 'active' : ''}`} aria-current={activeItem === item.label ? 'page' : undefined} onClick={() => handleSelect(item.label)}><i className={`bi ${item.icon}`} aria-hidden="true" /><span className="flex-grow-1">{item.label}</span>{item.label === 'Notifications' && notificationCount > 0 && <span className="badge rounded-pill text-bg-warning">{notificationCount}</span>}</button>)}
-                <button type="button" className="list-group-item list-group-item-action d-flex align-items-center gap-2 text-nowrap rounded-2" onClick={onLogout}><i className="bi bi-box-arrow-right" aria-hidden="true" /><span>Logout</span></button>
+                {items.map((item) => <button key={item.label} type="button" className={`list-group-item list-group-item-action d-flex align-items-center gap-2 text-nowrap rounded-2 ${activeItem === item.label ? 'active' : ''}`} aria-current={activeItem === item.label ? 'page' : undefined} onClick={() => handleSelect(item.label)}>
+                    <i className={`bi ${item.icon}`} aria-hidden="true" />
+                    <span className="flex-grow-1">{item.label}</span>{item.label === 'Notifications' && notificationCount > 0 &&
+                        <span className="badge rounded-pill text-bg-warning">{notificationCount}</span>}
+                </button>)}
+                <button type="button" className="list-group-item list-group-item-action d-flex align-items-center gap-2 text-nowrap rounded-2" onClick={onLogout}>
+                    <i className="bi bi-box-arrow-right" aria-hidden="true" />
+                    <span>Logout</span>
+                </button>
             </nav>
         </aside>
     )

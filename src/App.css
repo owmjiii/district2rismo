@@ -716,7 +716,7 @@
 .reservations-panelN {
     scrollbar-width: none;
     -ms-overflow-style: none;
-     max-height: 70vh;
+    max-height: 70vh;
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -798,4 +798,299 @@ textarea:-webkit-autofill:focus {
     -webkit-text-fill-color: #ffffff !important;
     caret-color: #ffffff;
     background-color: #454236 !important;
+}
+
+/* Review Desti */
+.destination-reviewsN {
+    min-width: 0;
+    overflow: hidden;
+    background-color: #24221B;
+}
+
+.destination-reviews-titleN {
+    color: #FFB200;
+}
+
+.destination-filterN {
+    min-width: 6rem;
+    border: 1px solid rgb(255 178 0 / 55%);
+    color: #FFB200;
+}
+
+.destination-filterN.active,
+.destination-filterN:hover {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.destination-review-listN {
+    display: flex;
+    gap: .7rem;
+    width: 100%;
+    overflow-x: auto;
+    padding: .15rem .2rem .5rem;
+    scrollbar-width: none;
+    touch-action: pan-x;
+    user-select: none;
+    cursor: grab;
+}
+
+.destination-review-listN.is-dragging {
+    cursor: grabbing;
+}
+
+
+.destination-review-listN::-webkit-scrollbar {
+    display: none;
+}
+
+.destination-review-cardN {
+    box-sizing: border-box;
+    flex: 0 0 40%;
+    min-width: 224px;
+    height: auto;
+    aspect-ratio: 228 / 290;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+
+.destination-review-summaryN {
+    box-sizing: border-box;
+    flex: 0 0 28%;
+    min-height: 0;
+    overflow: hidden;
+    background-color: #24221B;
+}
+
+.destination-review-imageN {
+    box-sizing: border-box;
+    flex: 0 0 32%;
+    width: 32%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.destination-review-dateN,
+.destination-review-promptN {
+    color: #BDBBB5;
+    font-size: .55rem;
+}
+
+.destination-review-promptN {
+    margin-top: .25rem;
+}
+
+.destination-review-formN {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    padding: .4rem;
+    font-size: .8rem;
+}
+
+.destination-rating-rowN {
+    min-height: 1.3rem;
+}
+
+.destination-starN {
+    color: #BDBBB5;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.destination-starN:disabled {
+    opacity: 1;
+}
+
+.destination-review-formN hr {
+    border-color: rgb(228 223 216 / 35%);
+}
+
+.destination-review-formN .destination-review-commentN:disabled {
+    background-color: #38362D;
+    color: #E4DFD8;
+    opacity: 1;
+}
+
+.destination-review-commentN {
+    box-sizing: border-box;
+    width: 100%;
+    height: 68px;
+    min-height: 68px;
+    resize: none;
+    border-color: #BDBBB5;
+    background-color: #38362D;
+    color: #E4DFD8;
+    font-size: .8rem;
+}
+
+.destination-review-commentN:disabled {
+    background-color: #38362D;
+    color: #E4DFD8;
+    opacity: 1;
+}
+
+.destination-review-commentN::placeholder {
+    color: #BDBBB5;
+}
+
+.destination-review-commentN:focus {
+    border-color: #FFB200;
+    background-color: #38362D;
+    color: #E4DFD8;
+    box-shadow: 0 0 0 .15rem rgb(255 178 0 / 20%);
+}
+
+.destination-review-submittedN {
+    padding: .4rem;
+    background-color: #454236;
+}
+
+.destination-starN {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #BDBBB5;
+    font-size: .65rem;
+    line-height: 1;
+}
+
+
+/* Settings */
+.settings-titleN {
+    color: #FFB200;
+}
+
+.settings-section-labelN {
+    color: #BDBBB5;
+}
+
+.settings-password-btnN {
+    width: min(100%, 245px);
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    color: #24221B;
+    white-space: nowrap;
+}
+
+.settings-switchN {
+    border-color: #FFB200;
+    background-color: #24221B;
+}
+
+.settings-switchN:checked {
+    border-color: #FFB200;
+    background-color: #FFB200;
+}
+
+.settings-switchN:focus {
+    box-shadow: 0 0 0 .25rem rgb(255 178 0 / 25%);
+}
+
+/* help */
+.help-content-cardN {
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+/* Host Side */
+/* Host DAshboard */
+.host-dashboardN {
+    width: 100%;
+    max-width: none;
+    min-height: 100%;
+    box-sizing: border-box;
+    background-color: #24221B;
+}
+
+.host-statsN {
+    max-width: 560px;
+}
+
+.host-stat-cardN {
+    min-height: 118px;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.host-stat-cardN.highlight {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.host-stat-cardN .bi {
+    flex-shrink: 0;
+}
+
+.host-recent-titleN {
+    color: #BDBBB5;
+}
+
+.host-bookingN {
+    min-height: 88px;
+    border: 1px solid rgb(255 178 0 / 8%);
+    color: #E4DFD8;
+}
+
+.host-booking-avatarN {
+    width: 50px;
+    height: 50px;
+    background-color: #FFB200;
+    color: #24221B;
+    font-size: 1.5rem;
+}
+
+.host-booking-dateN {
+    color: #BDBBB5;
+    font-size: .65rem;
+}
+
+.host-booking-statusN {
+    min-width: 76px;
+    padding: .3rem .6rem;
+    background-color: #38362D;
+    color: #FFB200;
+    font-size: .55rem;
+}
+
+.host-booking-statusN.pending {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.host-view-bookingsN {
+    color: #FFB200;
+    font-size: .85rem;
+    text-decoration: underline;
+}
+
+@media (max-width: 575.98px) {
+    .host-stat-cardN {
+        min-height: 100px;
+    }
+
+    .host-stat-cardN .small {
+        font-size: .65rem;
+    }
+
+    .host-bookingN {
+        min-height: 76px;
+    }
+
+    .host-booking-avatarN {
+        width: 42px;
+        height: 42px;
+    }
+
+    .host-bookingN h3 {
+        font-size: 1rem;
+    }
 }

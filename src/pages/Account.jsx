@@ -5,6 +5,9 @@ import { SideBarN } from '../components/Account/SideBarN.jsx'
 import { EditProfileN } from '../components/Account/EditProfileN.jsx'
 import { NotificationsN, temporaryNotifications } from '../components/Account/NotificationsN.jsx'
 import { MyReservationN } from '../components/Account/MyReservationN.jsx'
+import { DestinationToReviewN } from '../components/Account/DestinationToReviewN.jsx'
+import { SettingsN } from '../components/Account/SettingsN.jsx'
+import { HelpN } from '../components/Account/HelpN.jsx'
 
 function Account() {
     const [selectedSection, setSelectedSection] = useState('Profile')
@@ -18,7 +21,20 @@ function Account() {
                         <SideBarN onSelect={setSelectedSection} notificationCount={unreadNotificationCount} />
                     </div>
                     <div className={`col-12 col-lg-9 ${selectedSection === 'Profile' ? 'd-none d-lg-block' : ''}`}>
-                        {selectedSection === 'Notifications' ? <NotificationsN notifications={temporaryNotifications} /> : selectedSection === 'My Reservation' ? <MyReservationN /> : selectedSection === 'Profile' ? <EditProfileN /> : <p className="p-4 text-white">{selectedSection} page coming soon.</p>}
+                        {selectedSection === 'Notifications'
+                            ? <NotificationsN notifications={temporaryNotifications} />
+                            : selectedSection === 'My Reservation'
+                                ? <MyReservationN />
+                                : selectedSection === 'Destinations to Review'
+                                    ? <DestinationToReviewN />
+                                    : selectedSection === 'Profile'
+                                        ? <EditProfileN />
+                                        : selectedSection === 'Settings'
+                                            ? <SettingsN />
+                                            : selectedSection === 'Help'
+                                                ? <HelpN />
+                                                : null}
+
                     </div>
                 </div>
             </main>

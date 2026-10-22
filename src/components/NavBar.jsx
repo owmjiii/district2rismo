@@ -98,7 +98,7 @@ function NavBar() {
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                         </svg>
                     </button>
-                    <BurgerOptionN darkMode={darkMode} onToggleDarkMode={setDarkMode} onNotifications={() => console.log('Notifications clicked')} onHelpCenter={() => console.log('Help Center clicked')} onListProperty={() => console.log('List your property clicked')} onLogin={handleUserClick} />
+                    <BurgerOptionN darkMode={darkMode} onToggleDarkMode={setDarkMode} onNotifications={() => setShowLogin(true)} onHelpCenter={() => console.log('Help Center clicked')} onListProperty={() => console.log('List your property clicked')} onLogin={() => setShowLogin(true)} />
                 </div>
             </header>
 

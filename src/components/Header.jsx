@@ -5,6 +5,7 @@ import { LoginN } from './auth/LoginN.jsx'
 import Modal from 'react-bootstrap/Modal'
 import { BurgerOptionN } from './BurgerOptionN.jsx'
 
+
 function Header() {
 
     const [showLogin, setShowLogin] = useState(false)
@@ -38,7 +39,7 @@ function Header() {
                         </svg>
                     </button>
                     {/* DARK MODE NIGHT MODE ICON */}
-                    <BurgerOptionN darkMode={darkMode} onToggleDarkMode={setDarkMode} onNotifications={() => console.log('Notifications clicked')} onHelpCenter={() => console.log('Help Center clicked')} onListProperty={() => console.log('List your property clicked')} onLogin={() => setShowLogin(true)} />
+                    <BurgerOptionN darkMode={darkMode} onToggleDarkMode={setDarkMode} onNotifications={() => setShowLogin(true)} onHelpCenter={() => console.log('Help Center clicked')} onListProperty={() => console.log('List your property clicked')} onLogin={() => setShowLogin(true)} />
                 </div>
             </header>
             <Modal show={showLogin} onHide={() => setShowLogin(false)} centered contentClassName="bg-transparent border-0">

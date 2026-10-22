@@ -10,6 +10,7 @@ import PlaceDetails from './pages/PlaceDetails.jsx';
 import Account from './pages/Account.jsx';
 import { LoginN } from './components/auth/LoginN.jsx';
 import { SignUpN } from './components/auth/SignUpN.jsx';
+import HostN from './pages/Host.jsx';
 import './App.css';
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
           </Route>
 
           <Route element={<ProtectedRoutes allowedRoles={["host"]} />}>
-            <Route path="/host/*" element={<div>Host Management Panel</div>} />
+            <Route path="/host/*" element={<HostN />} />
           </Route>
 
           <Route element={<ProtectedRoutes allowedRoles={["admin"]} />}>
