@@ -1,25 +1,45 @@
-import { useState } from 'react'
-import { Routes, Route, Link } from 'react-router-dom';
-import Home from './pages/Home.jsx'
-import Destinations from './pages/Destinations.jsx'
-import PlaceDetails from './pages/PlaceDetails.jsx'
-import Account from './pages/Account.jsx'
-import './App.css'
+import { Routes, Route } from 'react-router-dom';
+import { NotificationProvider } from './context/NotificationContext';
+import { AuthProvider } from './context/AuthContext';
+import { ProtectedRoutes } from './components/ProtectedRoutes.jsx';
+import { Snackbar } from './components/Snackbar.jsx';
+
+import Home from './pages/Home.jsx';
+import Destinations from './pages/Destinations.jsx';
+import PlaceDetails from './pages/PlaceDetails.jsx';
+import Account from './pages/Account.jsx';
+import { LoginN } from './components/auth/LoginN.jsx';
+import { SignUpN } from './components/auth/SignUpN.jsx';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/destination" element={<Destinations />}/>
-        <Route path="/resorts/:id" element={<PlaceDetails />}/>
-        <Route path="/destinationdetails" element={<PlaceDetails />}/>
-        <Route path="/account" element={<Account />}/>
-      </Routes>
-    </>
-  )
+    <NotificationProvider>
+      <AuthProvider>
+        <Snackbar />
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/destination" element={<Destinations />}/>
+          <Route path="/resorts/:id" element={<PlaceDetails />}/>
+          <Route path="/destinationdetails" element={<PlaceDetails />}/>
+          <Route path="/login" element={<LoginN />} />
+          <Route path="/signup" element={<SignUpN />} />
+
+          <Route element={<ProtectedRoutes allowedRoles={["customer", "host"]} />}>
+            <Route path="/account" element={<Account />}/>
+          </Route>
+
+          <Route element={<ProtectedRoutes allowedRoles={["host"]} />}>
+            <Route path="/host/*" element={<div>Host Management Panel</div>} />
+          </Route>
+
+          <Route element={<ProtectedRoutes allowedRoles={["admin"]} />}>
+            <Route path="/admin/*" element={<div>Admin Panel</div>} />
+          </Route>
+        </Routes>
+      </AuthProvider>
+    </NotificationProvider>
+  );
 }
 
 export default App

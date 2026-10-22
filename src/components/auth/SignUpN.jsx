@@ -1,11 +1,36 @@
 import { useState } from 'react'
+import { useAuth } from '../../context/AuthContext'
 
-export const SignUpN = ({ onBack, onClose, onSubmit }) => {
+export const SignUpN = ({ email: initialEmail = '', onBack, onClose }) => {
     const [showPassword, setShowPassword] = useState(false)
+    const [email, setEmail] = useState(initialEmail)
+    const [role, setRole] = useState('customer')
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
 
-    const handleSubmit = (event) => {
+    const { signup } = useAuth()
+
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        onSubmit?.(Object.fromEntries(new FormData(event.currentTarget)))
+        setError('')
+
+        const data = Object.fromEntries(new FormData(event.currentTarget))
+
+        try {
+            setLoading(true)
+            await signup(email, data.password, {
+                firstName: data.firstName,
+                lastName: data.lastName,
+                dateOfBirth: data.dateOfBirth,
+                role: role,
+            })
+            onClose?.()
+        } catch (err) {
+            console.error('Sign Up Error:', err)
+            setError(err.message.replace('Firebase: ', ''))
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
@@ -19,25 +44,40 @@ export const SignUpN = ({ onBack, onClose, onSubmit }) => {
             <h1 className="h3 fw-bold text-center mb-2">Create your account</h1>
             <p className="text-center signup-mutedN mb-4">This information is required to book or host.</p>
 
+            {error && <div className="alert alert-danger py-2 small">{error}</div>}
+
             <form className="vstack gap-3" onSubmit={handleSubmit}>
+                <div>
+                    <label className="form-label fw-bold" htmlFor="signup-email">Email address</label>
+                    <input id="signup-email" className="form-control form-control-lg signup-inputN fs-6" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                </div>
+
+                <div>
+                    <label className="form-label fw-bold" htmlFor="signup-role">I want to join as a</label>
+                    <select id="signup-role" className="form-select form-select-lg signup-inputN fs-6" value={role} onChange={(e) => setRole(e.target.value)}>
+                        <option value="customer">Customer / Guest</option>
+                        <option value="host">Host</option>
+                    </select>
+                </div>
+
                 <fieldset>
                     <legend className="h6 fw-bold mb-2">Legal name</legend>
                     <div className="signup-name-fieldsN">
-                        <input className="form-control signup-inputN rounded-top-3 rounded-bottom-0" type="text" name="firstName" placeholder="First name" autoComplete="given-name" required />
-                        <input className="form-control signup-inputN rounded-bottom-3 rounded-top-0" type="text" name="lastName" placeholder="Last name" autoComplete="family-name" required />
+                        <input className="form-control signup-inputN fs-6 rounded-top-3 rounded-bottom-0" type="text" name="firstName" placeholder="First name" autoComplete="given-name" required />
+                        <input className="form-control signup-inputN fs-6 rounded-bottom-3 rounded-top-0" type="text" name="lastName" placeholder="Last name" autoComplete="family-name" required />
                     </div>
                     <small className="signup-mutedN">Use the name shown on your government ID.</small>
                 </fieldset>
 
                 <div>
                     <label className="form-label fw-bold" htmlFor="signup-birth-date">Date of birth</label>
-                    <input id="signup-birth-date" className="form-control form-control-lg signup-inputN" type="date" name="dateOfBirth" autoComplete="bday" required />
+                    <input id="signup-birth-date" className="form-control form-control-lg signup-inputN fs-6" type="date" name="dateOfBirth" autoComplete="bday" required />
                 </div>
 
                 <div>
                     <label className="form-label fw-bold" htmlFor="signup-password">Password</label>
                     <div className="input-group">
-                        <input id="signup-password" className="form-control form-control-lg signup-inputN" type={showPassword ? 'text' : 'password'} name="password" autoComplete="new-password" minLength={8} placeholder="At least 8 characters" required />
+                        <input id="signup-password" className="form-control form-control-lg signup-inputN fs-6" type={showPassword ? 'text' : 'password'} name="password" autoComplete="new-password" minLength={8} placeholder="At least 8 characters" required />
                         <button className="btn btn-outline-warning" type="button" onClick={() => setShowPassword((visible) => !visible)} aria-label={showPassword ? 'Hide password' : 'Show password'}>{showPassword ? 'Hide' : 'Show'}</button>
                     </div>
                 </div>
@@ -52,7 +92,7 @@ export const SignUpN = ({ onBack, onClose, onSubmit }) => {
 
                 <p className="small signup-mutedN mb-0">By selecting <strong>Agree and continue</strong>, you agree to our <a className="signup-linkN" href="#">Terms of Service</a> and acknowledge our <a className="signup-linkN" href="#">Privacy Policy</a>.</p>
 
-                <button className="btn btn-warning btn-lg w-100 fw-bold mt-2" type="submit">Agree and continue</button>
+                <button className="btn btn-warning btn-lg w-100 fw-bold mt-2" type="submit" disabled={loading}>{loading ? 'Creating account...' : 'Agree and continue'}</button>
             </form>
         </section>
     )
