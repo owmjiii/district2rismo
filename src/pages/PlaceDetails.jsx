@@ -13,10 +13,8 @@ import Img4 from '../images/Baliwag Hero.png'
 import Img5 from '../images/Baliwag Featured.png'
 
 const cottages = [
-    { id: 1, image: CottageImg, name: 'Cottage 1', capacity: '15-20', price: 1000 },
-    { id: 2, image: CottageImg, name: 'Cottage 2', capacity: '25-35', price: 1500 },
-    { id: 3, image: CottageImg, name: 'Cottage 3', capacity: '5-8', price: 500 },
-    { id: 4, image: CottageImg, name: 'Cottage 4', capacity: '40-50', price: 2500 },
+    { id: 1, image: CottageImg, name: 'Bedroom 1', capacity: '15 ', price: '4 Double Deck Beds and 2 Extra Mattress' },
+    { id: 2, image: CottageImg, name: 'Bedroom 2', capacity: '25', price: '4 Double Deck Beds and 2 Extra Mattress' },
 ]
 
 const ratingCounts = { 5: 170, 4: 40, 3: 18, 2: 9, 1: 8 }
@@ -53,6 +51,13 @@ function PlaceDetails() {
     const bookingCloseRef = useRef(null)
 
     const images = [Img1, Img2, Img3, Img4, Img5]
+    const resort = {
+        name: 'Galilee Wonderland Resort',
+        location: 'Bustos, Bulacan',
+        image: Img2,
+        rating: 4.7,
+        reviewCount: 245,
+    }
 
     const totalReviews = Object.values(ratingCounts).reduce((a, b) => a + b, 0)
     const averageRating =
@@ -88,49 +93,51 @@ function PlaceDetails() {
 
                         <div className='place-name my-4 d-flex flex-column gap-4'>
                             <div>
-                                <h1>Galilee Wonderland Resort</h1>
-                                <h3>Brgy. San Pedro, Bustos, Bulacan</h3>
-                            </div>
-
-                            <div>
-                                <span>Public Resort</span>
+                                <h1 className='lh-1'>Fabian's Azzure Private Resort</h1>
+                                <h3>Brgy. Pinagbarilan, Baliwag, Bulacan</h3>
                             </div>
                         </div>
 
                         <hr className='my-4' />
 
                         <div className='information'>
-                            <h3 className='rate-title'>Day and Night Swimming</h3>
-                            <small className='rate-schedule'>
-                                Day (8:00 AM - 5:00 PM), Night (3:00 PM - 11:00 PM)
-                            </small>
+                            <h3 className='rate-title mb-2'>Booking Schedule</h3>
 
                             <table className='rate-table'>
                                 <tbody>
                                     <tr>
-                                        <td>Adult</td>
-                                        <td>₱200.00</td>
+                                        <td>Day Tour</td>
+                                        <td>8:00 AM – 5:00 PM</td>
                                     </tr>
                                     <tr>
-                                        <td>Kids (Below 4 Feet)</td>
-                                        <td>₱180.00</td>
+                                        <td>Night Tour</td>
+                                        <td>5:00 PM – 3:00 PM (next day)</td>
                                     </tr>
                                     <tr>
-                                        <td>Senior Citizen</td>
-                                        <td>₱160.00</td>
+                                        <td>Flexible</td>
+                                        <td>Starts 8:00 AM or 5:00 PM - Ends 5:00 PM</td>
                                     </tr>
                                 </tbody>
                             </table>
 
+                            <h3 className='rate-title mb-2'>Guest Accommodation</h3>
+
+                            <table className='rate-table'>
+                                <tbody>
+                                    <tr>
+                                        <td>The Property can accommodate 50 - 100 Guests</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Space for up to 30 cars</td>
+                                        <td></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
                             <p className='rate-desc'>
-                                The crisp of the morning dews, tenderness of the alluring sunset and the
-                                serenity of chaste plains embraced the 5th day of March 2004, marking the
-                                establishment of Galilee on a 10-hectare land, blessed and appointed to
-                                gratify the prominence of the graces of the Almighty. Three (3) swimming
-                                pools (Ark of Covenant, Jordan River and Pools of Siloam) were carved out,
-                                which, by then, primarily cater water baptisms. These devout undertakings
-                                are celebrated through simple fellowships under the shelter of Gethsemane
-                                Hall, just within the vicinity.
+                                Enjoy a relaxing getaway at Fabian’s Azzure Private Resort, a place where you can unwind, spend quality time with family and friends, and create memorable moments away from the everyday hustle. Discover a private retreat for your next celebration, gathering, or well-deserved escape.
                             </p>
 
                             <button className='button'>Show more</button>
@@ -146,11 +153,12 @@ function PlaceDetails() {
                                 </svg>
                             </h2>
 
+                            {/* DEPENDE SA KUNG ANO ICHECHECK NG OWNER SYEMPRE */}
                             <ul className='offers-list'>
-                                <li>4 Adult Pools</li>
-                                <li>2 Adult Pools</li>
-                                <li>1 Wave Pool</li>
-                                <li>Cottages</li>
+                                <li>Adult  Pool</li>
+                                <li>Kiddie Pool</li>
+                                <li>Bedrooms</li>
+                                <li>Kitchen</li>
                                 <li>Food and refreshments</li>
                                 <li>Water Attractions</li>
                                 <li>Sports and recreation</li>
@@ -159,7 +167,7 @@ function PlaceDetails() {
                         </div>
 
                         <div className='cottages my-4'>
-                            <h2 className='detail-title'>Cottages</h2>
+                            <h2 className='detail-title'>Bedrooms</h2>
 
                             <div className='cottage-grid'>
                                 {cottages.map(c => (
@@ -171,7 +179,7 @@ function PlaceDetails() {
                     </div>
 
                     <div className='booking col-lg-5 my-4 position-sticky align-self-start'>
-                        <BookingCard cottages={cottages} />
+                        <BookingCard cottages={cottages} resort={resort} />
                     </div>
                 </div>
 
@@ -214,7 +222,7 @@ function PlaceDetails() {
                             &times;
                         </button>
                     </div>
-                    <BookingCard cottages={cottages} />
+                    <BookingCard cottages={cottages} resort={resort} />
                 </div>
 
                 <div className='reviews row'>

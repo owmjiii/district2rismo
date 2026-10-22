@@ -3,7 +3,7 @@ function StayCard({ image, name, capacity, price }) {
         <div className='cottage-card'>
             <img src={image} alt={name} />
             <h4>{name}</h4>
-            <small>{capacity} person • ₱{price.toLocaleString()}</small>
+            <small>{capacity} person • {typeof price === 'number' ? `₱${price.toLocaleString()}` : price}</small>
         </div>
     )
 }

@@ -8,16 +8,16 @@ import Modal from 'react-bootstrap/Modal'
 import { FilterN } from '../components/FilterN.jsx'
 
 const resorts = [
-    { id: 1, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 350, image: Sample },
-    { id: 2, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 350, image: Sample },
-    { id: 3, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 350, image: Sample },
-    { id: 4, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 350, image: Sample },
-    { id: 5, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 350, image: Sample },
-    { id: 6, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 350, image: Sample },
-    { id: 7, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 350, image: Sample },
-    { id: 8, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 350, image: Sample },
-    { id: 9, town: 'Bustos, Bulacan', name: 'Lorem Ipsum', price: 350, image: Sample },
-    { id: 10, town: 'Plaridel, Bulacan', name: 'Lorem Ipsum', price: 350, image: Sample },
+    { id: 1, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 'Starts at ₱5,000.00', image: Sample },
+    { id: 2, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 'Starts at ₱5,000.00', image: Sample },
+    { id: 3, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 'Starts at ₱5,000.00', image: Sample },
+    { id: 4, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 'Starts at ₱5,000.00', image: Sample },
+    { id: 5, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 'Starts at ₱5,000.00', image: Sample },
+    { id: 6, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 'Starts at ₱5,000.00', image: Sample },
+    { id: 7, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 'Starts at ₱5,000.00', image: Sample },
+    { id: 8, town: 'Baliwag, Bulacan', name: 'Lorem Ipsum', price: 'Starts at ₱5,000.00', image: Sample },
+    { id: 9, town: 'Bustos, Bulacan', name: 'Lorem Ipsum', price: 'Starts at ₱5,000.00', image: Sample },
+    { id: 10, town: 'Plaridel, Bulacan', name: 'Lorem Ipsum', price: 'Starts at ₱5,000.00', image: Sample },
 ]
 function Destinations() {
     const [showFilter, setShowFilter] = useState(false)

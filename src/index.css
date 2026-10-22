@@ -312,94 +312,6 @@ hr {
     border-color: #24221B;
 }
 
-/* DESTINATION NAVBAR */
-.classification-dest {
-    background-color: #FFB200;
-    border-radius: 100px;
-}
-
-.classification-dest button {
-    background-color: transparent;
-    padding: .6rem 3rem;
-    border: none;
-    border-radius: 25px;
-
-    font-size: clamp(.8rem, 4vw, .9rem);
-    font-weight: 500;
-    color: #26231d;
-}
-
-.classification-dest button:hover {
-    background-color: #e9a300;
-    color: #24221B;
-}
-
-.classification-dest button.active {
-    background-color: #24221B;
-    color: #ffb81f;
-}
-
-.classification-dropdown {
-    display: none;
-    position: relative;
-    margin-right: auto;
-}
-
-@media (max-width: 850px) {
-    .classification-dest {
-        display: none !important;
-    }
-
-    .classification-dropdown {
-        display: block;
-    }
-
-    .site-header .logo-link {
-        display: none !important;
-    }
-
-    .classification-dropdown {
-        margin-right: auto;
-    }
-}
-
-.dropdown-toggle-btn {
-    background-color: #FFB200;
-    color: #24221B;
-    border: 1px solid #cc8f01;
-    border-radius: 25px;
-    padding: .5rem 3rem;
-}
-
-.dropdown-list {
-    position: absolute;
-    top: calc(100% + .5rem);
-    left: 0;
-    min-width: 100%;
-    list-style: none;
-    margin: 0;
-    padding: .5rem;
-    background-color: #24221B;
-    border: 1px solid #cc8f01;
-    border-radius: 1rem;
-    z-index: 10;
-}
-
-.dropdown-list button {
-    width: 100%;
-    background: transparent;
-    border: none;
-    color: #FFB200;
-    text-align: left;
-    padding: .4rem .8rem;
-    border-radius: .5rem;
-}
-
-.dropdown-list button.active {
-    background-color: #FFB200;
-    color: #24221B;
-}
-
 /* DESTINATION CONTAINER */
 
 .filter {
@@ -1222,4 +1134,207 @@ select.booking-input option {
     .mobile-booking-panel .booking-card {
         padding: 1rem;
     }
+}
+
+/* CONFIRM AND PAY */
+.pay-page {
+    padding-top: 6rem;
+    padding-bottom: 3rem;
+    color: #E4DFD8;
+}
+
+.pay-title {
+    font-size: clamp(1.6rem, 5vw, 2.5rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+}
+
+.back-btn {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    border: none;
+    background-color: #383529;
+    color: #E4DFD8;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.back-btn:hover {
+    color: #FFB200;
+}
+
+.pay-card {
+    background-color: #383529;
+    border-radius: 1.2rem;
+    padding: 1.5rem;
+}
+
+.pay-card-collapsed {
+    padding: 1.1rem 1.5rem;
+}
+
+.step-title {
+    color: #FFB200;
+    font-weight: 600;
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    margin-bottom: 1rem;
+}
+
+.pay-option {
+    cursor: pointer;
+    padding: .4rem 0;
+    gap: 1rem;
+}
+
+.pay-option input[type='radio'] {
+    accent-color: #FFB200;
+    width: 1.2rem;
+    height: 1.2rem;
+    flex-shrink: 0;
+}
+
+.pay-note {
+    font-size: .7rem;
+    color: #bdb7a8;
+}
+
+.pay-divider {
+    border-color: #E4DFD8;
+    opacity: .25;
+    margin: .8rem 0;
+}
+
+.next-btn {
+    padding: .7rem 4rem;
+}
+
+/* Summary */
+.summary-img {
+    width: 5.5rem;
+    height: 5.5rem;
+    object-fit: cover;
+    border-radius: .6rem;
+    flex-shrink: 0;
+}
+
+.summary-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.summary-town {
+    color: #FFB200;
+    font-size: 1.2rem;
+}
+
+.field-label {
+    color: #FFB200;
+    font-weight: 600;
+    font-size: .95rem;
+    margin-bottom: .4rem;
+}
+
+.guest-row {
+    font-size: .85rem;
+    padding: .15rem 0;
+}
+
+.counter button {
+    width: 1.1rem;
+    height: 1.1rem;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    background-color: #E4DFD8;
+    color: #24221B;
+    line-height: 1;
+    font-size: .85rem;
+    display: grid;
+    place-items: center;
+}
+
+.counter button:disabled {
+    background-color: #77725f;
+    cursor: not-allowed;
+}
+
+.counter span {
+    min-width: 1rem;
+    text-align: center;
+}
+
+
+.pay-input {
+    background-color: transparent;
+    color: #E4DFD8;
+    border: 1px solid #E4DFD8;
+    border-radius: .5rem;
+    font-size: .85rem;
+    color-scheme: dark;    
+    padding-block: 1rem;        
+}
+
+.pay-input:focus {
+    background-color: transparent;
+    color: #E4DFD8;
+    border-color: #FFB200;
+}
+
+.pay-input option {
+    background-color: #383529;
+    color: #E4DFD8;
+}
+
+.total-label {
+    font-size: 1.1rem;
+}
+
+.total-price {
+    color: #FFB200;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.summary-card .button {
+    display: block;
+    padding: .8rem;
+}
+
+.pay-option input[type='radio'] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.2rem;
+    height: 1.2rem;
+    flex-shrink: 0;
+    margin: 0;
+    border: 2px solid #FFB200;      /* yellow na bilog lang kapag hindi active */
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+    transition: box-shadow .15s;
+}
+
+.pay-option input[type='radio']:checked {
+    background-color: #FFB200;
+    box-shadow: inset 0 0 0 3px #383529;   /* dark ring sa loob, para may yellow na tuldok sa gitna */
+}
+
+.pay-option input[type='radio']:focus-visible {
+    outline: 2px solid #FFB200;
+    outline-offset: 2px;
+}
+
+.pay-card-collapsed.clickable {
+    cursor: pointer;
+}
+
+.pay-card-collapsed.clickable:hover {
+    background-color: #403d30;
+}
+
+.icon {
+    color: #f2efe6;
 }

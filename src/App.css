@@ -1094,3 +1094,340 @@ textarea:-webkit-autofill:focus {
         font-size: 1rem;
     }
 }
+
+.confirm-payment-page {
+    min-height: 100dvh;
+    padding: 24px;
+    background: #24221b;
+    color: #e4dfd8;
+}
+
+.confirm-payment-shell {
+    width: min(100%, 1120px);
+    margin: 0 auto;
+}
+
+.confirm-payment-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.confirm-payment-title h1 {
+    margin: 0;
+    color: #e4dfd8;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    font-weight: 600;
+}
+
+.confirm-back-button {
+    display: grid;
+    width: 26px;
+    height: 26px;
+    flex: 0 0 26px;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #39372d;
+    color: #e4dfd8;
+}
+
+.confirm-back-button svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.confirm-payment-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(270px, 1fr);
+    align-items: start;
+    gap: 10px;
+}
+
+.payment-steps {
+    display: grid;
+    gap: 8px;
+}
+
+.payment-step,
+.reservation-summary {
+    border-radius: 15px;
+    background: #38362b;
+}
+
+.payment-step-heading {
+    display: flex;
+    width: 100%;
+    min-height: 50px;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border: 0;
+    border-radius: inherit;
+    background: transparent;
+    color: #ffb200;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: left;
+}
+
+.payment-step-heading span {
+    flex: 0 0 auto;
+}
+
+.payment-step-content {
+    padding: 0 22px 16px;
+    color: #e4dfd8;
+    font-size: 0.85rem;
+}
+
+.payment-choice {
+    display: flex;
+    min-height: 54px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgb(0 0 0 / 35%);
+    cursor: pointer;
+}
+
+.payment-choice span {
+    display: grid;
+    gap: 3px;
+}
+
+.payment-choice small {
+    color: #bdbbb5;
+    font-size: 0.62rem;
+    line-height: 1.35;
+}
+
+.payment-choice input,
+.payment-method-choice input {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+    accent-color: #ffb200;
+}
+
+.payment-choice-split {
+    border-bottom: 1px solid rgb(0 0 0 / 55%);
+}
+
+.payment-step-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 12px;
+}
+
+.payment-primary-button {
+    min-width: 140px;
+    min-height: 40px;
+    padding: 9px 20px;
+    border: 0;
+    border-radius: 999px;
+    background: #ffb200;
+    color: #24221b;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.payment-primary-button:hover {
+    background: #ffc033;
+}
+
+.payment-method-list {
+    display: grid;
+    gap: 12px;
+    padding-top: 2px;
+}
+
+.payment-method-choice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.payment-notice,
+.payment-review-note {
+    margin: 4px 0 0;
+    color: #ffcf70;
+    font-size: 0.75rem;
+}
+
+.payment-review p {
+    margin: 0 0 8px;
+}
+
+.payment-review strong {
+    display: block;
+    margin-top: 12px;
+    color: #ffb200;
+}
+
+.reservation-summary {
+    padding: 24px;
+}
+
+.reservation-place {
+    display: flex;
+    min-height: 70px;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.reservation-place img,
+.reservation-image-placeholder {
+    width: 68px;
+    height: 68px;
+    flex: 0 0 68px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.reservation-image-placeholder {
+    display: grid;
+    place-items: center;
+    background: #24221b;
+    color: #ffb200;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.reservation-place p {
+    margin: 0;
+    font-size: 0.7rem;
+    line-height: 1.3;
+}
+
+.reservation-place .reservation-name {
+    color: #e4dfd8;
+    font-size: 0.75rem;
+}
+
+.reservation-location,
+.reservation-rating {
+    color: #ffb200;
+}
+
+.reservation-rating {
+    font-size: 0.55rem !important;
+}
+
+.reservation-label {
+    display: block;
+    margin: 8px 0 4px;
+    color: #ffb200;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.reservation-guests {
+    margin-bottom: 8px;
+}
+
+.reservation-guest-row {
+    display: flex;
+    min-height: 16px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: #e4dfd8;
+    font-size: 0.65rem;
+}
+
+.reservation-counter {
+    display: flex;
+    min-width: 53px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.reservation-counter button {
+    display: grid;
+    width: 14px;
+    height: 14px;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #e4dfd8;
+    font-size: 0.8rem;
+    line-height: 1;
+}
+
+.reservation-counter button:disabled {
+    opacity: 0.4;
+}
+
+.reservation-counter span {
+    min-width: 10px;
+    text-align: center;
+}
+
+.reservation-field {
+    width: 100%;
+    min-height: 28px;
+    padding: 4px 8px;
+    border: 1px solid #bdbbb5;
+    border-radius: 5px;
+    background: transparent;
+    color: #e4dfd8;
+    font-size: 0.68rem;
+}
+
+.reservation-field option {
+    background: #38362b;
+    color: #e4dfd8;
+}
+
+.reservation-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 13px;
+    padding-top: 10px;
+    border-top: 1px solid #bdbbb5;
+    font-size: 0.85rem;
+}
+
+.reservation-total strong {
+    color: #ffb200;
+    font-size: 0.9rem;
+}
+
+.reservation-book-button {
+    width: 100%;
+    margin-top: 12px;
+}
+
+@media (max-width: 650px) {
+    .confirm-payment-page {
+        padding: 18px 14px;
+    }
+
+    .confirm-payment-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .reservation-summary {
+        grid-row: 1;
+    }
+
+    .payment-step-heading {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .payment-step-content {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+}

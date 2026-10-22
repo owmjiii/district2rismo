@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const guestTypes = [
     { key: 'adult', label: 'Adult', price: 200 },
@@ -6,7 +7,7 @@ const guestTypes = [
     { key: 'senior', label: 'Senior', price: 160 },
 ]
 
-const sessions = ['Day Swimming', 'Night Swimming']
+const sessions = ['Day Tour', 'Night Tour', 'Flexible']
 
 const peso = (n) =>
     n.toLocaleString('en-PH', { style: 'currency', currency: 'PHP' })
@@ -27,7 +28,8 @@ function PlusIcon() {
     )
 }
 
-function BookingCard({ cottages = [] }) {
+function BookingCard({ cottages = [], resort }) {
+    const navigate = useNavigate()
     const today = new Date().toISOString().split('T')[0]
 
     const [guests, setGuests] = useState({ adult: 6, kids: 3, senior: 0 })
@@ -41,7 +43,7 @@ function BookingCard({ cottages = [] }) {
 
     const guestsTotal = guestTypes.reduce((sum, g) => sum + guests[g.key] * g.price, 0)
     const cottage = cottages.find(c => c.id === Number(cottageId))
-    const cottagePrice = cottage ? cottage.price : 0
+    const cottagePrice = typeof cottage?.price === 'number' ? cottage.price : 0
     const total = guestsTotal + cottagePrice
 
     const summaryText =
@@ -50,8 +52,18 @@ function BookingCard({ cottages = [] }) {
         `${guests.senior} Senior`
 
     const handleBook = () => {
-        // need replace for a real place
-        console.log({ guests, session, date, cottage, total })
+        navigate('/pay', {
+            state: {
+                booking: {
+                    guests,
+                    session,
+                    date,
+                    cottage: cottage ? { name: cottage.name, price: cottage.price } : null,
+                    total,
+                    resort,
+                },
+            },
+        })
     }
 
     return (
@@ -105,47 +117,22 @@ function BookingCard({ cottages = [] }) {
                 onChange={e => setDate(e.target.value)}
             />
 
-            <h4 className='booking-heading'>Cottage</h4>
-            <select
-                className='booking-input'
-                value={cottageId}
-                onChange={e => setCottageId(e.target.value)}
-            >
-                <option value=''>No cottage</option>
-                {cottages.map(c => (
-                    <option key={c.id} value={c.id}>
-                        {c.name} ({c.capacity} person • {peso(c.price).replace('.00', '')})
-                    </option>
-                ))}
-            </select>
-
-            <h4 className='booking-heading'>Summary</h4>
-            <div className='summary-row'>
-                <span>{summaryText}</span>
-                <span>{peso(guestsTotal)}</span>
-            </div>
-            {cottage && (
-                <div className='summary-row'>
-                    <span>{cottage.name}</span>
-                    <span>{peso(cottage.price)}</span>
-                </div>
-            )}
-
             <hr className='summary-divider' />
 
             <div className='total-row'>
                 <span>TOTAL</span>
-                <span className='total-amount'>{peso(total)}</span>
+                {/* LEGIT PRICE NG RESORT */}
+                <span className='total-amount'>15,000.00</span>
             </div>
 
             <button
                 type='button'
                 className='book-btn'
                 onClick={handleBook}
-                disabled={guestsTotal === 0}
             >
                 Book Now
             </button>
+
         </div>
     )
 }

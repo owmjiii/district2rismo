@@ -8,6 +8,7 @@ import Home from './pages/Home.jsx';
 import Destinations from './pages/Destinations.jsx';
 import PlaceDetails from './pages/PlaceDetails.jsx';
 import Account from './pages/Account.jsx';
+import ConfirmPayment from './pages/ConfirmPayment.jsx';
 import { LoginN } from './components/auth/LoginN.jsx';
 import { SignUpN } from './components/auth/SignUpN.jsx';
 import HostN from './pages/Host.jsx';
@@ -23,6 +24,7 @@ function App() {
           <Route path="/destination" element={<Destinations />}/>
           <Route path="/resorts/:id" element={<PlaceDetails />}/>
           <Route path="/destinationdetails" element={<PlaceDetails />}/>
+          <Route path="/pay" element={<ConfirmPayment />}/>
           <Route path="/login" element={<LoginN />} />
           <Route path="/signup" element={<SignUpN />} />
 
