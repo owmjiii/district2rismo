@@ -28,11 +28,10 @@ function NavBar() {
     }, [])
 
     const tabs = [
-        { key: 'public', label: 'Public Resort' },
         { key: 'private', label: 'Private Resort' },
         { key: 'hotel', label: 'Hotels' },
     ]
-    const [category, setCategory] = useState('public')
+    const [category, setCategory] = useState('private')
     const [menuOpen, setMenuOpen] = useState(false)
 
     const currentLabel = tabs.find(t => t.key === category).label
@@ -54,7 +53,7 @@ function NavBar() {
                     </Link>
                 )}
 
-                <div className='classification-dest d-flex align-items-start gap-2'>
+                <div className='classification-dest d-flex align-items-center gap-2 px-3'>
                     {tabs.map(t => (
                         <button
                             key={t.key}
