@@ -1,12 +1,10 @@
-import { useState } from 'react'
-
 const menuItems = [
     { label: 'Dashboard', icon: 'bi-grid-fill' },
     { label: 'Notifications', icon: 'bi-bell-fill' },
     { label: 'Properties', icon: 'bi-houses-fill' },
     { label: 'Bookings', icon: 'bi-calendar-event-fill' },
     { label: 'Reviews', icon: 'bi-star-fill' },
-    { label: 'Guest', icon: 'bi-people-fill' },
+    { label: 'Earnings Summary', icon: 'bi-cash-stack' },
 ]
 
 const generalItems = [
@@ -14,18 +12,16 @@ const generalItems = [
     { label: 'Help', icon: 'bi-question-circle-fill' },
 ]
 
-export const HostSideBarN = ({ onSelect, onLogout }) => {
-    const [activeItem, setActiveItem] = useState('Dashboard')
-
+export const HostSideBarN = ({ onSelect, activeSection = 'Dashboard' }) => {
     const renderItem = (item) => (
         <button
             key={item.label}
             type="button"
-            className={`list-group-item list-group-item-action d-flex align-items-center gap-2 text-nowrap rounded-2 ${activeItem === item.label ? 'active' : ''}`} aria-current={activeItem === item.label ? 'page' : undefined}
-            onClick={() => {
-                setActiveItem(item.label)
-                onSelect?.(item.label)
-            }}
+            className={`list-group-item list-group-item-action d-flex align-items-center gap-2 text-nowrap rounded-2 ${
+                activeSection === item.label ? 'active' : ''
+            }`}
+            aria-current={activeSection === item.label ? 'page' : undefined}
+            onClick={() => onSelect?.(item.label)}
         >
             <i className={`bi ${item.icon}`} aria-hidden="true" />
             <span>{item.label}</span>
@@ -41,7 +37,10 @@ export const HostSideBarN = ({ onSelect, onLogout }) => {
                 <p className="text-uppercase text-secondary small px-3 mt-4 mb-2">General</p>
                 {generalItems.map(renderItem)}
 
-                <button type="button" className="list-group-item list-group-item-action d-flex align-items-center gap-2 text-nowrap rounded-2">
+                <button
+                    type="button"
+                    className="list-group-item list-group-item-action d-flex align-items-center gap-2 text-nowrap rounded-2"
+                >
                     <i className="bi bi-box-arrow-right" aria-hidden="true" />
                     <span>Logout</span>
                 </button>

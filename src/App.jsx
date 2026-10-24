@@ -11,7 +11,11 @@ import Account from './pages/Account.jsx';
 import ConfirmPayment from './pages/ConfirmPayment.jsx';
 import { LoginN } from './components/auth/LoginN.jsx';
 import { SignUpN } from './components/auth/SignUpN.jsx';
-import HostN from './pages/Host.jsx';
+import { HostN } from './pages/Host.jsx';
+import { ConfirmBooking } from './pages/ConfirmBooking.jsx';
+import { HostViewPropertyPage } from './pages/HostViewPropertyDetails.jsx'
+import { HostMyProfilePage } from './pages/HostProfilePage.jsx'
+import { HostEditPropertyPage } from './pages/HostEditProperty.jsx'
 import './App.css';
 
 function App() {
@@ -33,6 +37,11 @@ function App() {
           </Route>
 
           <Route element={<ProtectedRoutes allowedRoles={["host"]} />}>
+            <Route path="/host/confirm-booking" element={<ConfirmBooking />} />
+            <Route path="/host/view-property" element={<HostViewPropertyPage />} />
+            <Route path="/host/edit-property" element={<HostEditPropertyPage />} />
+            <Route path="/host/profile" element={<HostMyProfilePage />} />
+            <Route path="/host/properties" element={<HostN initialSection="Properties" />} />
             <Route path="/host/*" element={<HostN />} />
           </Route>
 

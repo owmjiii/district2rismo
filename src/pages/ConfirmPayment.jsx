@@ -1,14 +1,133 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Header.jsx'
 import BaliwagHero from '../images/Baliwag Hero.png'
 import Footer from '../components/Footer.jsx'
 import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import StripePaymentN from '../components/StripePaymentN.jsx'
 
 
 function ConfirmPayment() {
     const [step, setStep] = useState(1)
     const [payOption, setPayOption] = useState('full')
     const [method, setMethod] = useState('gcash')
+    const location = useLocation()
+    const { state } = location
+    const booking = state?.booking
+    const sessionId = new URLSearchParams(location.search).get('session_id')
+    const [paymentResult, setPaymentResult] = useState({
+        loading: Boolean(sessionId),
+        error: '',
+        status: '',
+        paymentStatus: '',
+    })
+
+    useEffect(() => {
+        if (!sessionId) return
+
+        const controller = new AbortController()
+
+        async function verifyPayment() {
+            setPaymentResult({
+                loading: true,
+                error: '',
+                status: '',
+                paymentStatus: '',
+            })
+
+            try {
+                const apiUrl =
+                    import.meta.env.VITE_PAYMENT_API_URL || 'http://localhost:4242'
+                const response = await fetch(
+                    `${apiUrl}/verify-checkout-session?session_id=${encodeURIComponent(sessionId)}`,
+                    { signal: controller.signal }
+                )
+                const data = await response.json()
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Could not verify payment.')
+                }
+
+                setPaymentResult({
+                    loading: false,
+                    error: '',
+                    status: data.status,
+                    paymentStatus: data.payment_status,
+                })
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    setPaymentResult({
+                        loading: false,
+                        error: error.message || 'Could not verify payment.',
+                        status: '',
+                        paymentStatus: '',
+                    })
+                }
+            }
+        }
+
+        verifyPayment()
+        return () => controller.abort()
+    }, [sessionId])
+
+    if (sessionId) {
+        const isPaid = paymentResult.paymentStatus === 'paid'
+        const isExpired = paymentResult.status === 'expired'
+
+        return (
+            <div>
+                <Header />
+                <main className='pay-page container-fluid px-3 px-md-5'>
+                    <div className='pay-card'>
+                        <h1 className='pay-title'>
+                            {paymentResult.loading
+                                ? 'Checking your payment...'
+                                : isPaid
+                                    ? 'Payment successful'
+                                    : isExpired
+                                        ? 'Checkout expired'
+                                        : 'Payment not confirmed'}
+                        </h1>
+                        {paymentResult.loading ? (
+                            <p role='status'>Verifying your payment with Stripe...</p>
+                        ) : paymentResult.error ? (
+                            <p className='payment-error' role='alert'>
+                                {paymentResult.error}
+                            </p>
+                        ) : isPaid ? (
+                            <p>Your payment was confirmed by Stripe.</p>
+                        ) : (
+                            <p>
+                                Stripe has not confirmed this payment as paid.
+                                Please start the booking again if you still want to pay.
+                            </p>
+                        )}
+                        <Link className='button' to='/'>
+                            Return to home
+                        </Link>
+                    </div>
+                </main>
+                <Footer />
+            </div>
+        )
+    }
+
+    if (!booking) {
+        return <p>Booking details are missing. Please start your booking again.</p>
+    }
+
+    const guests = booking?.guests
+
+    const total =
+        (guests?.adult || 0) * 200 +
+        (guests?.kids || 0) * 180 +
+        (guests?.senior || 0) * 160 +
+        (typeof booking?.cottage?.price === 'number'
+            ? booking.cottage.price
+            : 0)
+
+    const money = (amount) =>
+        `₱${amount.toLocaleString('en-PH', { minimumFractionDigits: 2 })}`
 
     // Pwedeng bumalik sa step na natapos na, pero hindi lumaktaw pasulong
     const goTo = (n) => {
@@ -76,7 +195,13 @@ function ConfirmPayment() {
                                 <hr className='pay-divider' />
 
                                 <div className='d-flex justify-content-end'>
-                                    <button className='button next-btn' onClick={() => setStep(2)}>Next</button>
+                                    <button
+                                        type='button'
+                                        className='button next-btn'
+                                        onClick={() => setStep(2)}
+                                    >
+                                        Next
+                                    </button>
                                 </div>
                             </div>
                         ) : (
@@ -139,9 +264,14 @@ function ConfirmPayment() {
 
                                 <hr className='pay-divider' />
 
-                                <div className='d-flex justify-content-end'>
-                                    <button className='button next-btn'>Book Now</button>
-                                </div>
+                                {method === 'card' ? (
+                                    <StripePaymentN booking={booking} payOption={payOption} />
+                                ) : (
+                                    <p className="pay-note">
+                                        {methods.find((item) => item.key === method).label} payments
+                                        are not connected yet. Choose Credit / Debit Card to pay with Stripe.
+                                    </p>
+                                )}
                             </div>
                         ) : (
                             <div className='pay-card pay-card-collapsed'>
@@ -156,8 +286,8 @@ function ConfirmPayment() {
                             <div className='d-flex gap-3 mb-4'>
                                 <img className='summary-img' src={BaliwagHero} alt='Galilee Wonderland Resort' />
                                 <div>
-                                    <h3 className='summary-name'>Galilee Wonderland Resort</h3>
-                                    <span className='summary-town'>Bustos, Bulacan</span>
+                                    <h3 className="summary-name">{booking.resort.name}</h3>
+                                    <span className="summary-town">{booking.resort.location}</span>
                                     <small className='d-block pay-note'>★ 4.7 (246 Reviews)</small>
                                 </div>
                             </div>
@@ -202,7 +332,7 @@ function ConfirmPayment() {
 
                             <div className='d-flex justify-content-between align-items-center mb-3'>
                                 <span className='total-label'>TOTAL</span>
-                                <span className='total-price'>₱2,740.00</span>
+                                <span className="total-price">{money(total)}</span>
                             </div>
                         </div>
                     </div>

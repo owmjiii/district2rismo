@@ -15,6 +15,9 @@ const transformJsxInJs = () => ({
 })
 
 export default defineConfig({
+  resolve: {
+    dedupe: ['react', 'react-dom'],
+  },
   plugins: [
     react(),
     transformJsxInJs()

@@ -71,7 +71,7 @@ const iconClassesN = {
   'Aparthotel': 'bi-building',
 }
 export const FilterN = ({ onClose }) => {
-  const [typeN, setTypeN] = useState('Public Resort')
+  const [typeN, setTypeN] = useState('Private resort')
   const [priceN, setPriceN] = useState(25000)
   const [maxPriceDraftN, setMaxPriceDraftN] = useState('25000')
   const [minPriceN, setMinPriceN] = useState(200)
@@ -91,24 +91,20 @@ export const FilterN = ({ onClose }) => {
     setPriceN(boundedPriceN)
     setMaxPriceDraftN(String(boundedPriceN))
   }
-  const typesN = ['Public Resort', 'Private resort', 'Hotel']
+  const typesN = ['Private resort', 'Hotel']
   const essentialOptionsN = {
-    'Public Resort': ['Pavilion', 'Cottages', 'Showers', 'Changing rooms', 'Free parking', 'Food available'],
     'Private resort': ['Air-conditioned rooms', 'Pavilion', 'Free parking', 'Kitchen access', 'Showers', 'Changing rooms', 'Wi-Fi'],
     Hotel: ['Air conditioning', 'Wi-Fi', 'Free parking', 'Breakfast available', 'Restaurant', 'Family rooms'],
   }
   const bookingOptionsN = {
-    'Public Resort': ['Day tour', 'Overnight stay', 'Event package', 'Instant book', 'Allows pets'],
     'Private resort': ['Day tour', 'Overnight stay', 'Whole resort rental', 'Event package', 'Instant book', 'Allows pets'],
     Hotel: ['Instant book', 'Self check-in', 'Breakfast included', 'Allows pets'],
   }
   const propertyTypesN = {
-    'Public Resort': ['Waterpark resort', 'Garden resort', 'Family resort', 'Events resort'],
     'Private resort': ['Private pool resort', 'Private villa', 'Vacation house', 'Event venue'],
     'Hotel': ['Hotel', 'Resort hotel', 'Family hotel', 'Budget hotel'],
   }
   const featureOptionsN = {
-    'Public Resort': ['Kids pool', 'Water slides', 'Videoke', 'Outdoor dining', 'Barbecue area', 'Event space', 'Family friendly'],
     'Private resort': ['Private pool', 'Whole resort rental', 'Videoke', 'Barbecue area', 'Garden', 'Event-friendly', 'Family friendly'],
     'Hotel': ['Swimming pool', 'Family rooms', 'Meeting/event room', 'Restaurant', 'Breakfast available', 'Room service', 'Fitness center'],
   }
@@ -230,7 +226,7 @@ export const FilterN = ({ onClose }) => {
             <hr className="my-4" />
             <h2 className="h6 text-white fw-semibold mb-3">{groupN.title}</h2>
             <div className="filter-choice-gridN option-icon-gridN">
-              {(({ essentials: essentialOptionsN[typeN], features: featureOptionsN[typeN], booking: bookingOptionsN[typeN], property: propertyTypesN[typeN] })[groupN.key] || groupN.choices).filter((choiceN) => !(groupN.key === 'essentials' && ((choiceN === 'Pool' && (typeN === 'Public Resort' || typeN === 'Private resort')) || (choiceN === 'Restaurant' && typeN === 'Private resort')))).map((choiceN) => {
+              {(({ essentials: essentialOptionsN[typeN], features: featureOptionsN[typeN], booking: bookingOptionsN[typeN], property: propertyTypesN[typeN] })[groupN.key] || groupN.choices).filter((choiceN) => !(groupN.key === 'essentials' && ((choiceN === 'Pool' && typeN === 'Private resort') || (choiceN === 'Restaurant' && typeN === 'Private resort')))).map((choiceN) => {
                 const selectedN = (choicesN[groupN.key] || []).includes(choiceN)
                 return (
                   <button
@@ -250,7 +246,7 @@ export const FilterN = ({ onClose }) => {
         ))}
       </div>
       <footer className="filter-footerN d-flex justify-content-between align-items-center border-top">
-        <button className="btn btn-link fw-semibold p-0" type="button" onClick={() => { setTypeN('Public Resort'); setPriceN(25000); setMaxPriceDraftN('25000'); setMinPriceN(200); setMinPriceDraftN('200'); setChoicesN({}); setRoomsN(0); setBedsN(0) }}>
+        <button className="btn btn-link fw-semibold p-0" type="button" onClick={() => { setTypeN('Private resort'); setPriceN(25000); setMaxPriceDraftN('25000'); setMinPriceN(200); setMinPriceDraftN('200'); setChoicesN({}); setRoomsN(0); setBedsN(0) }}>
           Clear all
         </button>
         <button className="btn btn-dark rounded-3 px-4 py-2 fw-semibold" type="button">
@@ -260,7 +256,6 @@ export const FilterN = ({ onClose }) => {
     </div>
   )
 }
-
 
 
 

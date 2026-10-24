@@ -1072,6 +1072,7 @@ textarea:-webkit-autofill:focus {
     text-decoration: underline;
 }
 
+
 @media (max-width: 575.98px) {
     .host-stat-cardN {
         min-height: 100px;
@@ -1095,6 +1096,761 @@ textarea:-webkit-autofill:focus {
     }
 }
 
+
+/* host properties */
+.host-propertiesN {
+    min-width: 0;
+    color: #E4DFD8;
+}
+
+.host-propertiesN h1 {
+    color: #FFB200;
+}
+
+.host-property-rowN {
+    min-height: 44px;
+    border: 1px solid rgb(255 178 0 / 8%);
+    background-color: #24221B;
+}
+
+.host-property-imageN {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+}
+
+.host-view-propertyN,
+.host-view-propertyN:hover {
+    color: #FFB200;
+    font-size: .75rem;
+    text-decoration: none;
+}
+
+.host-delete-propertyN,
+.host-delete-propertyN:hover {
+    color: #FFB200;
+}
+
+/* View booking detail */
+.host-booking-detailN {
+    color: #E4DFD8;
+}
+
+.host-booking-detail-backN {
+    color: #BDBBB5;
+    text-decoration: none;
+}
+
+.host-booking-detail-backN:hover {
+    color: #FFB200;
+}
+
+.host-booking-guest-cardN {
+    color: #E4DFD8;
+    background-color: #38362D;
+}
+
+.host-booking-detail-avatarN {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #FFB200;
+    color: #24221B;
+    font-size: 1.75rem;
+}
+
+.host-booking-detail-panelN {
+    border-color: #38362D;
+    background-color: transparent;
+    color: #E4DFD8;
+}
+
+.host-booking-rejectN {
+    border: 1px solid #FFB200;
+    color: #FFB200;
+}
+
+.host-booking-rejectN:hover {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+/* Booking */
+.host-bookingsN {
+    min-width: 0;
+    color: #E4DFD8;
+}
+
+.host-bookingsN h1 {
+    color: #FFB200;
+}
+
+.host-property-selectN {
+    width: min(100%, 235px);
+    border: 0;
+    border-radius: 2rem;
+    background-color: #FFB200;
+    color: #24221B;
+    text-align: center;
+}
+
+.host-booking-list-panelN {
+    min-height: 500px;
+    border: 1px solid rgb(255 178 0 / 15%);
+}
+
+.host-booking-filterN {
+    min-width: 5.75rem;
+    border: 1px solid #FFB200;
+    color: #FFB200;
+}
+
+.host-booking-filterN.active,
+.host-booking-filterN:hover {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.host-booking-dividerN {
+    border: 0;
+    border-top: 3px solid #454236;
+    opacity: 1;
+}
+
+.host-booking-searchN,
+.host-booking-search-iconN {
+    border: 0;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.host-booking-searchN::placeholder {
+    color: #BDBBB5;
+}
+
+.host-booking-searchN:focus {
+    background-color: #38362D;
+    color: #E4DFD8;
+    box-shadow: 0 0 0 .15rem rgb(255 178 0 / 20%);
+}
+
+.host-booking-search-iconN {
+    font-size: 1.1rem;
+}
+
+.host-booking-rowN {
+    min-height: 54px;
+    border: 1px solid rgb(255 178 0 / 10%);
+}
+
+.host-booking-rowN.selected,
+.host-booking-rowN:hover {
+    background-color: #29271F;
+}
+
+.host-booking-avatarN {
+    width: 28px;
+    height: 28px;
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.host-booking-resortN,
+.host-booking-detailsN {
+    color: #FFB200;
+    font-size: .65rem;
+}
+
+.host-booking-dateN {
+    color: #BDBBB5;
+    font-size: .55rem;
+}
+
+.host-booking-pill {
+    min-width: 4.25rem;
+    padding: .25rem .5rem;
+    background-color: #FFB200;
+    color: #24221B;
+    font-size: .6rem;
+}
+
+.host-booking-pill.accepted {
+    background-color: #454236;
+    color: #FFB200;
+}
+
+.host-booking-pill.rejected {
+    background-color: #6b3832;
+    color: #fff;
+}
+
+.host-availabilityN {
+    color: #E4DFD8;
+}
+
+.host-availability-date-inputN {
+    min-height: 44px;
+    border: 1px solid #BDBBB5;
+    background-color: #24221B;
+    color: #E4DFD8;
+}
+
+.host-availability-date-inputN:focus {
+    border-color: #FFB200;
+    background-color: #24221B;
+    color: #E4DFD8;
+    box-shadow: 0 0 0 .15rem rgb(255 178 0 / 20%);
+}
+
+.host-availability-date-inputN::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+/* host review */
+.host-reviewsN {
+    min-width: 0;
+    background-color: #24221B;
+    color: #E4DFD8;
+}
+
+.host-reviews-contentN {
+    width: 100%;
+    max-width: 470px;
+}
+
+.host-overall-starN {
+    font-size: 2.6rem;
+}
+
+.host-rating-distribution-rowN {
+    height: 1rem;
+    font-size: .65rem;
+}
+
+.host-rating-progressN,
+.host-breakdown-progressN {
+    height: .25rem;
+    background-color: #383539;
+}
+
+.host-rating-progressN .progress-bar,
+.host-breakdown-progressN .progress-bar {
+    background-color: #FFB200;
+}
+
+.host-rating-breakdown-rowN {
+    min-height: 1.8rem;
+    gap: .5rem;
+    font-size: .85rem;
+}
+
+.host-breakdown-progressN {
+    width: 17rem;
+    flex: 0 1 17rem;
+}
+
+.host-review-listN {
+    max-height: 42vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #383539 transparent;
+}
+
+.host-review-cardN {
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.host-review-avatarN {
+    width: 1.9rem;
+    height: 1.9rem;
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.host-review-cardN .text-warning {
+    color: #FFB200;
+}
+
+.host-review-commentN {
+    padding-left: 2.7rem;
+    line-height: 1.2;
+}
+
+@media (max-width: 575.98px) {
+    .host-rating-breakdown-rowN {
+        font-size: .75rem;
+    }
+
+    .host-breakdown-progressN {
+        width: 7rem;
+        flex-basis: 7rem;
+    }
+
+    .host-review-cardN .card-body {
+        padding: .75rem;
+    }
+
+    .host-review-cardN h3 {
+        font-size: .8rem;
+    }
+
+    .host-review-commentN {
+        padding-left: 0;
+    }
+}
+
+/* Host Earning Summary */
+.host-earningN {
+    color: #E4DFD8;
+    background-color: #24221B;
+}
+
+.host-earning-headingN {
+    color: #BDBBB5;
+}
+
+.host-earning-cardN {
+    color: #E4DFD8;
+    background-color: #38362D;
+}
+
+.host-transactionN {
+    min-height: 66px;
+    color: #E4DFD8;
+    border: 1px solid #38362D;
+}
+
+.host-transaction-imageN {
+    width: 52px;
+    height: 52px;
+    object-fit: cover;
+}
+
+.host-earning-periodN {
+    width: min(100%, 16rem);
+    border-color: #FFB200;
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+/* HOst property view detail */
+.host-view-property-pageN {
+    color: #E4DFD8;
+}
+
+.host-view-property-crumbN {
+    color: #E4DFD8;
+    text-decoration: none;
+}
+
+.host-view-property-main-imageN {
+    height: 100%;
+    min-height: 12rem;
+    max-height: 40rem;
+    object-fit: cover;
+}
+
+.host-view-property-gallery-imageN {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.host-view-bedroom-imageN {
+    aspect-ratio: 1 / 0.8;
+    object-fit: cover;
+}
+
+.host-view-property-badgeN,
+.host-view-property-actionsN {
+    background-color: #38362D;
+    color: #FFB200;
+}
+
+.host-view-property-dividerN {
+    border-color: #77746B;
+    opacity: 1;
+}
+
+.host-view-property-descriptionN {
+    color: #BDBBB5;
+    font-size: .75rem;
+}
+
+.host-view-property-deleteN {
+    border: 1px solid #FFB200;
+    color: #FFB200;
+}
+
+.host-view-property-deleteN:hover {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.host-view-property-actionsN {
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border-radius: 1.75rem;
+}
+
+.host-view-property-actionsN .btn {
+    min-height: 3.5rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.host-view-property-actionsN hr {
+    margin: 1.5rem 0 2rem;
+    border-color: #E4DFD8;
+    opacity: 1;
+}
+
+.host-view-property-actionsN .host-view-property-deleteN {
+    margin-bottom: 0;
+    border: 1px solid #FFB200;
+    color: #FFB200;
+}
+
+.host-view-property-actionsN .host-view-property-deleteN:hover {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.host-view-property-badgeN {
+    padding: 0.7rem 0.65rem;
+    font-size: 0.95rem;
+}
+
+.host-view-property-pageN .rate-table td,
+.host-view-property-pageN .rate-desc,
+.host-view-property-pageN .details>.row.small {
+    font-size: 1.1rem;
+}
+
+.host-view-property-pageN .information>.btn {
+    min-height: 3rem;
+    font-size: 1rem;
+}
+
+.host-view-property-pageN .cottages h3 {
+    font-size: 1.6rem;
+}
+
+.host-view-property-pageN .cottages p {
+    font-size: .9rem;
+}
+
+/* Host navbar */
+.host-mobile-menuN {
+    background-color: #24221B;
+    color: #E4DFD8;
+}
+
+.host-mobile-menuN .profile-sidebarN {
+    min-height: 100%;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.host-profile-placeholderN {
+    width: 40px;
+    height: 40px;
+    color: #FFB200;
+    background-color: #38362D;
+    font-size: 1.25rem;
+}
+
+/* Host add property step 1 */
+.host-edit-wizardN .host-add-propertyN > nav {
+    display: none;
+}
+
+.host-add-propertyN {
+    min-width: 0;
+    color: #E4DFD8;
+}
+
+.host-add-propertyN .breadcrumb-item,
+.host-add-propertyN .breadcrumb-item.active {
+    color: #E4DFD8;
+}
+
+.host-add-propertyN .breadcrumb-item+.breadcrumb-item::before {
+    color: #E4DFD8;
+    content: "›";
+}
+
+.host-add-property-crumbN,
+.host-add-property-crumbN:hover {
+    color: #E4DFD8;
+    text-decoration: none;
+}
+
+.host-add-propertyN .form-label,
+.host-add-property-countN {
+    color: #BDBBB5;
+}
+
+.host-add-property-inputN {
+    border-color: #BDBBB5;
+    background-color: #24221B;
+    color: #E4DFD8;
+}
+
+.host-add-property-inputN:focus {
+    border-color: #FFB200;
+    background-color: #24221B;
+    color: #E4DFD8;
+    box-shadow: 0 0 0 .15rem rgb(255 178 0 / 20%);
+}
+
+.host-add-property-mapN {
+    min-height: 150px;
+    background: linear-gradient(110deg, #E4DFD8, #888681);
+}
+
+.host-add-property-dividerN {
+    border-color: rgb(0 0 0 / 45%);
+    opacity: 1;
+}
+
+.host-add-property-nextN {
+    min-width: 145px;
+    color: #24221B;
+}
+
+/* host property step 2 */
+.host-amenity-headingN {
+    color: #BDBBB5;
+}
+
+.host-amenity-checkN {
+    border-color: #FFB200;
+    background-color: transparent;
+}
+
+.host-amenity-checkN:checked {
+    border-color: #FFB200;
+    background-color: #FFB200;
+}
+
+.host-amenity-checkN:focus {
+    border-color: #FFB200;
+    box-shadow: 0 0 0 .15rem rgb(255 178 0 / 20%);
+}
+
+.host-add-property-backN {
+    border: 1px solid #FFB200;
+    color: #FFB200;
+}
+
+.host-add-property-backN:hover {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.host-add-propertyN .form-check-label {
+    font-size: .95rem;
+}
+
+.host-amenity-headingN {
+    font-size: .9rem;
+}
+
+.host-add-propertyN .form-check {
+    margin-bottom: .4rem;
+}
+
+.host-amenity-checkN {
+    width: 1.1em;
+    height: 1.1em;
+    margin-top: .15em;
+}
+
+.host-amenity-checkN {
+    border-radius: 50%;
+}
+
+/* Step 3 add prop */
+.host-photo-uploadN {
+    min-height: 2.75rem;
+    border-color: #BDBBB5;
+    background-color: transparent;
+    color: #E4DFD8;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.host-photo-uploadN:hover,
+.host-photo-uploadN:focus-within {
+    border-color: #FFB200;
+    color: #FFB200;
+}
+
+.host-photo-fileN {
+    min-height: 2.75rem;
+    padding: .5rem .75rem;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.host-photo-fileN .small {
+    font-size: .9rem;
+}
+
+.host-photo-thumbnailN {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+}
+
+.host-photo-removeN {
+    color: #E4DFD8;
+}
+
+.host-photo-removeN:hover {
+    color: #FFB200;
+}
+
+/* Step 4 */
+.host-tour-radioN {
+    border-color: #FFB200;
+    background-color: transparent;
+}
+
+.host-tour-radioN:checked {
+    border-color: #FFB200;
+    background-color: #FFB200;
+}
+
+.host-tour-radioN:focus {
+    border-color: #FFB200;
+    box-shadow: 0 0 0 .15rem rgb(255 178 0 / 20%);
+}
+
+.host-tour-orN,
+.host-tour-currencyN {
+    border-color: #BDBBB5;
+    background-color: transparent;
+    color: #E4DFD8;
+}
+
+.host-tour-add-timeN {
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.host-tour-add-timeN:hover {
+    background-color: #454236;
+    color: #FFB200;
+}
+
+.host-add-property-inputN[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+/* step 5 */
+.host-bedroom-uploadN {
+    min-height: 2.25rem;
+    border-color: #BDBBB5;
+    background-color: transparent;
+    color: #E4DFD8;
+    cursor: pointer;
+}
+
+.host-bedroom-quantity-label,
+.host-bedroom-quantityN {
+    width: 5rem;
+    flex: 0 0 5rem;
+}
+
+.host-bedroom-add-bedN {
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.host-bedroom-add-bedN:hover {
+    background-color: #454236;
+    color: #FFB200;
+}
+
+.host-bedroom-checkN {
+    border-color: #FFB200;
+    background-color: transparent;
+}
+
+.host-bedroom-checkN:checked {
+    border-color: #FFB200;
+    background-color: #FFB200;
+}
+
+.host-bedroom-listN {
+    min-height: 6.5rem;
+    border: 1px solid #38362D;
+}
+
+.host-bedroom-cardN {
+    min-height: 3.5rem;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.host-bedroom-imageN {
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: cover;
+}
+
+.host-bedroom-descriptionN {
+    color: #BDBBB5;
+    font-size: .65rem;
+}
+
+/* step 6 */
+.host-policy-checkN {
+    border-color: #FFB200;
+    background-color: transparent;
+}
+
+.host-policy-checkN:checked {
+    border-color: #FFB200;
+    background-color: #FFB200;
+}
+
+.host-policy-checkN:focus {
+    border-color: #FFB200;
+    box-shadow: 0 0 0 .15rem rgb(255 178 0 / 20%);
+}
+
+/* Step 6 */
+.host-verification-uploadN {
+    min-height: 2.75rem;
+    border-color: #BDBBB5;
+    background-color: transparent;
+    color: #E4DFD8;
+    cursor: pointer;
+}
+
+.host-verification-uploadN:hover {
+    border-color: #FFB200;
+}
+
+.host-verification-dropN {
+    min-height: 2.5rem;
+    border: 1px dashed #77746B;
+    color: #BDBBB5;
+    cursor: pointer;
+    font-size: .8rem;
+}
+
+.host-verification-dropN:hover {
+    border-color: #FFB200;
+    color: #FFB200;
+}
+
+/* payment */
 .confirm-payment-page {
     min-height: 100dvh;
     padding: 24px;
@@ -1317,7 +2073,7 @@ textarea:-webkit-autofill:focus {
 }
 
 .reservation-rating {
-    font-size: 0.55rem !important;
+    font-size: 0.55rem;
 }
 
 .reservation-label {
