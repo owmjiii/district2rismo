@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { HostNavBar } from '../components/HostSide/HostNavBar.jsx'
 import Footer from '../components/Footer.jsx'
 import { HostSideBarN } from '../components/HostSide/HostSideBarN.jsx'
@@ -8,21 +9,19 @@ import { HostPropertiesN } from '../components/HostSide/HostPropertiesN.jsx'
 import { HostBookingsN } from '../components/HostSide/HostBookingsN.jsx'
 import { HostReviewsN } from '../components/HostSide/HostReviewsN.jsx'
 import { HostEarningSummary } from '../components/HostSide/HostEarningSummary.jsx'
-import { ConfirmBooking } from './ConfirmBooking.jsx'
 import { HostAddProperty } from './HostAddProperty.jsx'
 import { HostSettingsN } from '../components/HostSide/HostSettingsN.jsx'
 import { HostHelp } from '../components/HostSide/HostHelp.jsx'
 
 export function HostN({ initialSection = 'Dashboard' }) {
     const [selectedSection, setSelectedSection] = useState(initialSection)
-    const [selectedBooking, setSelectedBooking] = useState(null)
+    const navigate = useNavigate()
 
     const showBookingDetails = (booking) => {
-        setSelectedBooking(booking)
-        setSelectedSection('Booking Details')
+        navigate('/host/confirm-booking', { state: { booking } })
     }
 
-    const isFullWidth = ['Add Property', 'Booking Details'].includes(selectedSection)
+    const isFullWidth = selectedSection === 'Add Property'
 
     return (
         <div className="account-pageN">
@@ -53,13 +52,6 @@ export function HostN({ initialSection = 'Dashboard' }) {
                             />
                         ) : selectedSection === 'Bookings' ? (
                             <HostBookingsN onViewBooking={showBookingDetails} />
-                        ) : selectedSection === 'Booking Details' ? (
-                            <ConfirmBooking
-                                booking={selectedBooking}
-                                onBack={() => setSelectedSection('Bookings')}
-                                onConfirm={() => console.log('Confirm booking:', selectedBooking)}
-                                onReject={() => console.log('Reject booking:', selectedBooking)}
-                            />
                         ) : selectedSection === 'Reviews' ? (
                             <HostReviewsN />
                         ) : selectedSection === 'Earnings Summary' ? (

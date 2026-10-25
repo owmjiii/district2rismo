@@ -12,7 +12,13 @@ export function HostAddProperty({ onBack, onNext, mode = 'add', property }) {
     const [step, setStep] = useState(1)
     const [draft, setDraft] = useState(property)
     const updateProperty = (changes) => {
-        setDraft((current) => ({ ...current, ...changes }))
+        setDraft((current) => ({
+            ...current,
+            ...changes,
+            ...(changes.mediaPhotos
+                ? { mediaPhotos: { ...current?.mediaPhotos, ...changes.mediaPhotos } }
+                : {}),
+        }))
     }
     const editNavigation = mode === 'edit' ? (
         <HostViewPropertyNav
@@ -46,6 +52,7 @@ export function HostAddProperty({ onBack, onNext, mode = 'add', property }) {
                     onExit={onBack}
                     onBack={() => setStep(2)}
                     onNext={() => setStep(4)}
+                    property={draft}
                     onPropertyChange={updateProperty}
                     editNavigation={editNavigation}
                 />
@@ -63,7 +70,7 @@ export function HostAddProperty({ onBack, onNext, mode = 'add', property }) {
                     onExit={onBack}
                     onBack={() => setStep(4)}
                     onNext={() => setStep(6)}
-                    property={mode === 'edit' ? draft : undefined}
+                    property={draft}
                     onPropertyChange={updateProperty}
                     editNavigation={editNavigation}
                 />
@@ -79,10 +86,8 @@ export function HostAddProperty({ onBack, onNext, mode = 'add', property }) {
             ) : (
                 <VerificationSubmission
                     onBack={() => setStep(6)}
-                    onSubmit={(verificationFiles) =>
-                        onNext?.(mode === 'edit' ? draft : verificationFiles)
-                    }
-                    property={mode === 'edit' ? draft : undefined}
+                    onSubmit={(verificationFiles) => onNext?.({ ...draft, verificationFiles })}
+                    property={draft}
                     onPropertyChange={updateProperty}
                     isEditing={mode === 'edit'}
                     editNavigation={editNavigation}

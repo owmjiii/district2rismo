@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { ConfirmBooking } from '../../pages/ConfirmBooking.jsx'
 
 const sampleBookings = [
     { id: 1, guest: 'Mj Massalang', resort: 'Galilee Wonderland Resort', date: '2026-10-27', guests: 4, status: 'Pending' },
@@ -16,8 +15,7 @@ const formatDate = (date) => new Date(`${date}T00:00:00`).toLocaleDateString('en
     year: 'numeric',
 })
 
-export const HostBookingsN = ({ onViewOrMarkUnavailable }) => {
-    const [showDetails, setShowDetails] = useState(false)
+export const HostBookingsN = ({ onViewBooking }) => {
     const [activeFilter, setActiveFilter] = useState('All')
     const [search, setSearch] = useState('')
     const [selectedBooking, setSelectedBooking] = useState(sampleBookings[0])
@@ -32,18 +30,7 @@ export const HostBookingsN = ({ onViewOrMarkUnavailable }) => {
     const handleSelectBooking = (booking) => {
         setSelectedBooking(booking)
         setSelectedDate(booking.date)
-        setShowDetails(true)
-    }
-
-    if (showDetails) {
-        return (
-            <ConfirmBooking
-                booking={selectedBooking}
-                onBack={() => setShowDetails(false)}
-                onConfirm={() => console.log('Confirm booking:', selectedBooking)}
-                onReject={() => console.log('Reject booking:', selectedBooking)}
-            />
-        )
+        onViewBooking?.(booking)
     }
 
     return (
@@ -124,7 +111,7 @@ export const HostBookingsN = ({ onViewOrMarkUnavailable }) => {
                         <button
                             type="button"
                             className="btn btn-warning rounded-pill w-100 py-3"
-                            onClick={() => setShowDetails(true)}
+                            onClick={() => selectedBooking && onViewBooking?.(selectedBooking)}
                             disabled={!selectedBooking}
                         >
                             View Booking Details

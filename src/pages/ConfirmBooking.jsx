@@ -21,7 +21,7 @@ export function ConfirmBooking() {
                         {booking ? (
                             <HostBookingDetailsN
                                 booking={booking}
-                                onBack={() => navigate(-1)}
+                                onBack={() => navigate('/host/bookings')}
                                 onConfirm={() => console.log('Confirm booking:', booking)}
                                 onReject={() => console.log('Reject booking:', booking)}
                             />

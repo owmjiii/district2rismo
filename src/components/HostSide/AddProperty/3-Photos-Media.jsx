@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const photoGroups = [
     { id: 'cover', title: 'Cover Photo', multiple: false },
@@ -10,16 +10,55 @@ const photoGroups = [
 
 const formatFileSize = (bytes) => `${(bytes / 1024).toFixed(2)}kb`
 
-export const PhotosMedia = ({ onBack, onNext, onExit, onPropertyChange, editNavigation }) => {
-    const [photos, setPhotos] = useState({})
+const getSavedPhotos = (property) => {
+    if (property?.mediaPhotos && Object.keys(property.mediaPhotos).length > 0) {
+        return Object.fromEntries(
+            Object.entries(property.mediaPhotos).map(([groupId, savedPhotos]) => [
+                groupId,
+                savedPhotos.map((photo) => ({
+                    id: photo.id,
+                    file: { name: photo.name, size: photo.size },
+                    preview: photo.preview,
+                })),
+            ])
+        )
+    }
+
+    return {
+        ...(property?.image
+            ? { cover: [{ id: 'saved-cover', file: { name: 'Cover photo', size: 0 }, preview: property.image }] }
+            : {}),
+        ...(property?.galleryImages?.length
+            ? {
+                gallery: property.galleryImages.map((preview, index) => ({
+                    id: `saved-gallery-${index}`,
+                    file: { name: `Gallery photo ${index + 1}`, size: 0 },
+                    preview,
+                })),
+            }
+            : {}),
+    }
+}
+
+const readPhoto = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => typeof reader.result === 'string'
+        ? resolve(reader.result)
+        : reject(new Error('Could not create a preview for the selected property photo.'))
+    reader.onerror = () => reject(reader.error || new Error('Could not read the selected property photo.'))
+    reader.readAsDataURL(file)
+})
+
+export const PhotosMedia = ({ onBack, onNext, onExit, property, onPropertyChange, editNavigation }) => {
+    const [photos, setPhotos] = useState(() => getSavedPhotos(property))
+    const objectUrls = useRef(new Set())
 
     useEffect(() => {
+        const urls = objectUrls.current
         return () => {
-            Object.values(photos).flat().forEach((photo) => {
-                URL.revokeObjectURL(photo.preview)
-            })
+            urls.forEach((url) => URL.revokeObjectURL(url))
         }
-    }, [photos])
+    }, [])
 
     const addPhotos = (group, fileList) => {
         const selectedFiles = Array.from(fileList).map((file) => ({
@@ -27,53 +66,62 @@ export const PhotosMedia = ({ onBack, onNext, onExit, onPropertyChange, editNavi
             file,
             preview: URL.createObjectURL(file),
         }))
+        selectedFiles.forEach((photo) => objectUrls.current.add(photo.preview))
 
-        if (selectedFiles.length && (group.id === 'cover' || group.id === 'gallery')) {
-            const reader = new FileReader()
-            reader.onload = () => {
-                if (typeof reader.result !== 'string') {
-                    console.error('Could not create a preview for the selected property photo.')
-                    return
-                }
-
-                if (group.id === 'cover') {
-                    onPropertyChange?.({ image: reader.result })
-                    return
-                }
-
-                Promise.all(selectedFiles.map(({ file }) => new Promise((resolve, reject) => {
-                    const galleryReader = new FileReader()
-                    galleryReader.onload = () => typeof galleryReader.result === 'string'
-                        ? resolve(galleryReader.result)
-                        : reject(new Error('Could not create a preview for a gallery photo.'))
-                    galleryReader.onerror = () => reject(galleryReader.error || new Error('Could not read a gallery photo.'))
-                    galleryReader.readAsDataURL(file)
-                })))
-                    .then((galleryImages) => onPropertyChange?.({ galleryImages }))
-                    .catch((error) => console.error('Could not load property gallery photos:', error))
-            }
-            reader.onerror = () => console.error('Could not read the selected property photo:', reader.error)
-            reader.readAsDataURL(selectedFiles[0].file)
-        }
-
-        setPhotos((current) => ({
-            ...current,
+        const updatedPhotos = {
+            ...photos,
             [group.id]: group.multiple
-                ? [...(current[group.id] || []), ...selectedFiles]
+                ? [...(photos[group.id] || []), ...selectedFiles]
                 : selectedFiles.slice(0, 1),
-        }))
+        }
+        if (!group.multiple) {
+            (photos[group.id] || []).forEach((photo) => {
+                if (photo.preview.startsWith('blob:')) {
+                    URL.revokeObjectURL(photo.preview)
+                    objectUrls.current.delete(photo.preview)
+                }
+            })
+        }
+        setPhotos(updatedPhotos)
+
+        Promise.all(updatedPhotos[group.id].map(async (photo) => ({
+            id: photo.id,
+            name: photo.file.name,
+            size: photo.file.size,
+            preview: photo.file instanceof File
+                ? await readPhoto(photo.file)
+                : photo.preview,
+        })))
+            .then((savedPhotos) => {
+                const changes = { mediaPhotos: { [group.id]: savedPhotos } }
+                if (group.id === 'cover') changes.image = savedPhotos[0]?.preview || ''
+                if (group.id === 'gallery') changes.galleryImages = savedPhotos.map((photo) => photo.preview)
+                onPropertyChange?.(changes)
+            })
+            .catch((error) => console.error('Could not save property photo previews:', error))
     }
 
     const removePhoto = (groupId, photoId) => {
-        setPhotos((current) => {
-            const photo = (current[groupId] || []).find((item) => item.id === photoId)
-            if (photo) URL.revokeObjectURL(photo.preview)
+        const photo = (photos[groupId] || []).find((item) => item.id === photoId)
+        if (photo?.preview.startsWith('blob:')) {
+            URL.revokeObjectURL(photo.preview)
+            objectUrls.current.delete(photo.preview)
+        }
 
-            return {
-                ...current,
-                [groupId]: (current[groupId] || []).filter((item) => item.id !== photoId),
-            }
-        })
+        const remainingPhotos = (photos[groupId] || []).filter((item) => item.id !== photoId)
+        const updatedPhotos = { ...photos, [groupId]: remainingPhotos }
+        setPhotos(updatedPhotos)
+
+        const savedPhotos = remainingPhotos.map(({ id, file, preview }) => ({
+            id,
+            name: file.name,
+            size: file.size,
+            preview,
+        }))
+        const changes = { mediaPhotos: { [groupId]: savedPhotos } }
+        if (groupId === 'cover') changes.image = savedPhotos[0]?.preview || ''
+        if (groupId === 'gallery') changes.galleryImages = savedPhotos.map((item) => item.preview)
+        onPropertyChange?.(changes)
     }
 
     const renderGroup = (group) => {

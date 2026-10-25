@@ -13,11 +13,44 @@ const uploadGroups = [
     ],
 ]
 
+const photoGroupLabels = {
+    cover: 'Cover Photo',
+    gallery: 'Property Gallery',
+    kitchen: 'Kitchen & Dining',
+    facilities: 'Facilities & Amenities',
+    bathrooms: 'Bathrooms',
+}
+
 const formatFileSize = (bytes) => `${(bytes / 1024).toFixed(2)}kb`
 
 export const VerificationSubmission = ({ onBack, onSubmit, property, onPropertyChange, isEditing = false, editNavigation }) => {
     const [files, setFiles] = useState(property?.verificationFiles || {})
+    const [imagePreviews, setImagePreviews] = useState({})
     const [errors, setErrors] = useState({})
+    const savedPhotoGroups = Object.entries(property?.mediaPhotos || {})
+    const uploadedPhotos = savedPhotoGroups.length
+        ? savedPhotoGroups.flatMap(([groupId, photos]) => photos.map((photo) => ({
+            id: `${groupId}-${photo.id}`,
+            name: photo.name || photoGroupLabels[groupId] || groupId,
+            size: photo.size,
+            src: photo.preview,
+        })))
+        : [
+            ...(property?.image ? [{ id: 'cover', name: 'Cover Photo', src: property.image }] : []),
+            ...(property?.galleryImages || []).map((src, index) => ({
+                id: `gallery-${index}`,
+                name: `Gallery Photo ${index + 1}`,
+                src,
+            })),
+        ]
+    const bedroomPhotos = (property?.bedrooms || [])
+        .filter((bedroom) => bedroom.photo?.startsWith('data:image/'))
+        .map((bedroom) => ({
+            id: bedroom.id,
+            name: bedroom.photoName || `${bedroom.name} Photo`,
+            size: bedroom.photoSize,
+            src: bedroom.photo,
+        }))
 
     const addFile = (id, file) => {
         if (!file) return
@@ -25,6 +58,29 @@ export const VerificationSubmission = ({ onBack, onSubmit, property, onPropertyC
         setFiles(updated)
         onPropertyChange?.({ verificationFiles: updated })
         setErrors((current) => ({ ...current, [id]: false }))
+
+        const isImage = file.type.startsWith('image/') || /\.(png|jpe?g)$/i.test(file.name)
+        if (!isImage) {
+            setImagePreviews((current) => {
+                const next = { ...current }
+                delete next[id]
+                return next
+            })
+            return
+        }
+
+        const reader = new FileReader()
+        reader.onload = () => {
+            if (typeof reader.result === 'string') {
+                setImagePreviews((current) => ({ ...current, [id]: reader.result }))
+            } else {
+                console.error(`Could not create a preview for ${file.name}.`)
+            }
+        }
+        reader.onerror = () => {
+            console.error(`Could not read ${file.name}:`, reader.error)
+        }
+        reader.readAsDataURL(file)
     }
 
     const removeFile = (id) => {
@@ -32,6 +88,11 @@ export const VerificationSubmission = ({ onBack, onSubmit, property, onPropertyC
         delete updated[id]
         setFiles(updated)
         onPropertyChange?.({ verificationFiles: updated })
+        setImagePreviews((current) => {
+            const next = { ...current }
+            delete next[id]
+            return next
+        })
     }
 
     const handleSubmit = (event) => {
@@ -83,7 +144,18 @@ export const VerificationSubmission = ({ onBack, onSubmit, property, onPropertyC
 
             {files[group.id] ? (
                 <div className="host-photo-fileN d-flex align-items-center gap-2 rounded-2 px-3 py-2 mt-2">
-                    <i className="bi bi-file-earmark-image text-warning" aria-hidden="true" />
+                    {imagePreviews[group.id] ? (
+                        <img
+                            className="host-photo-thumbnailN rounded-1"
+                            src={imagePreviews[group.id]}
+                            alt=""
+                        />
+                    ) : (
+                        <i
+                            className={`bi ${files[group.id].type === 'application/pdf' ? 'bi-file-earmark-pdf' : 'bi-file-earmark-image'} text-warning`}
+                            aria-hidden="true"
+                        />
+                    )}
                     <span className="small text-truncate flex-grow-1">
                         <span className="text-warning">{files[group.id].name}</span>
                         {' '}({formatFileSize(files[group.id].size)})
@@ -130,6 +202,31 @@ export const VerificationSubmission = ({ onBack, onSubmit, property, onPropertyC
             <h1 className="h5 fw-bold text-warning mb-4">
                 7. Verification &amp; Submission
             </h1>
+
+            {(uploadedPhotos.length > 0 || bedroomPhotos.length > 0) && (
+                <section className="mb-4" aria-label="Uploaded property photos">
+                    <h2 className="h6 text-warning mb-3">Uploaded Photos</h2>
+                    <div className="row g-3">
+                        {[...uploadedPhotos, ...bedroomPhotos].map((photo) => (
+                            <div className="col-12" key={photo.id}>
+                                <div className="host-photo-fileN d-flex align-items-center gap-2 rounded-2 px-3 py-2">
+                                    <img
+                                        className="host-photo-thumbnailN rounded-1"
+                                        src={photo.src}
+                                        alt=""
+                                    />
+                                    <span className="small text-truncate flex-grow-1">
+                                        <span className="text-warning">{photo.name}</span>
+                                        {Number.isFinite(photo.size) && (
+                                            <> ({formatFileSize(photo.size)})</>
+                                        )}
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            )}
 
             <form onSubmit={handleSubmit}>
                 <div className="row g-4">

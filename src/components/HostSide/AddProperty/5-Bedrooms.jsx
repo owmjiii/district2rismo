@@ -77,6 +77,7 @@ export const Bedrooms = ({ onBack, onNext, onExit, property, onPropertyChange, e
 
     const saveBedroom = (event) => {
         event.preventDefault()
+        const existingBedroom = bedrooms.find((item) => item.id === editingId)
 
         const bedroom = {
             id: editingId ?? Date.now(),
@@ -84,7 +85,9 @@ export const Bedrooms = ({ onBack, onNext, onExit, property, onPropertyChange, e
             capacity,
             beds,
             amenities,
-            photo: photo?.preview ?? sampleBedroomPhoto,
+            photo: photo?.preview ?? existingBedroom?.photo ?? sampleBedroomPhoto,
+            photoName: photo?.name ?? existingBedroom?.photoName,
+            photoSize: photo?.size ?? existingBedroom?.photoSize,
         }
 
         const updated = editingId

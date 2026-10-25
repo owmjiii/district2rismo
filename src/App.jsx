@@ -38,6 +38,7 @@ function App() {
 
           <Route element={<ProtectedRoutes allowedRoles={["host"]} />}>
             <Route path="/host/confirm-booking" element={<ConfirmBooking />} />
+            <Route path="/host/bookings" element={<HostN initialSection="Bookings" />} />
             <Route path="/host/view-property" element={<HostViewPropertyPage />} />
             <Route path="/host/edit-property" element={<HostEditPropertyPage />} />
             <Route path="/host/profile" element={<HostMyProfilePage />} />
