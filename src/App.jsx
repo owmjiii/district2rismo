@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+﻿import { Routes, Route } from 'react-router-dom';
 import { NotificationProvider } from './context/NotificationContext';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoutes } from './components/ProtectedRoutes.jsx';
@@ -12,10 +12,15 @@ import ConfirmPayment from './pages/ConfirmPayment.jsx';
 import { LoginN } from './components/auth/LoginN.jsx';
 import { SignUpN } from './components/auth/SignUpN.jsx';
 import { HostN } from './pages/Host.jsx';
-import { ConfirmBooking } from './pages/ConfirmBooking.jsx';
+import { ConfirmBooking } from './pages/HostConfirmBooking.jsx';
 import { HostViewPropertyPage } from './pages/HostViewPropertyDetails.jsx'
 import { HostMyProfilePage } from './pages/HostProfilePage.jsx'
 import { HostEditPropertyPage } from './pages/HostEditProperty.jsx'
+import { Admin } from './pages/Admin.jsx'
+import { AdminPropertyDetailsPage } from './pages/AdminPropertyDetailsPage.jsx'
+import { AdminReservationDetailsPage } from './pages/AdminReservationDetailsPage.jsx'
+import { AdminReviewDetailsPage } from './pages/AdminReviewDetailsPage.jsx'
+import { AdminProfilePage } from './pages/AdminProfile.jsx'
 import './App.css';
 
 function App() {
@@ -24,16 +29,33 @@ function App() {
       <AuthProvider>
         <Snackbar />
         <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="/destination" element={<Destinations />}/>
-          <Route path="/resorts/:id" element={<PlaceDetails />}/>
-          <Route path="/destinationdetails" element={<PlaceDetails />}/>
-          <Route path="/pay" element={<ConfirmPayment />}/>
+          {import.meta.env.DEV && (
+            <>
+              <Route path="/admin-preview" element={<Admin preview />} />
+              <Route path="/admin-preview/properties/:id" element={<AdminPropertyDetailsPage preview />} />
+              <Route path="/admin-preview/reservations/:id" element={<AdminReservationDetailsPage preview />} />
+              <Route path="/admin-preview/reviews/:id" element={<AdminReviewDetailsPage preview />} />
+              <Route
+                path="/admin-profile-preview"
+                element={<AdminProfilePage preview />}
+              />
+              <Route path="/host-preview/*" element={<HostN />} />
+              <Route
+                path="/host-profile-preview"
+                element={<HostMyProfilePage preview />}
+              />
+            </>
+          )}
+          <Route path="/" element={<Home />} />
+          <Route path="/destination" element={<Destinations />} />
+          <Route path="/resorts/:id" element={<PlaceDetails />} />
+          <Route path="/destinationdetails" element={<PlaceDetails />} />
+          <Route path="/pay" element={<ConfirmPayment />} />
           <Route path="/login" element={<LoginN />} />
           <Route path="/signup" element={<SignUpN />} />
 
           <Route element={<ProtectedRoutes allowedRoles={["customer", "host"]} />}>
-            <Route path="/account" element={<Account />}/>
+            <Route path="/account" element={<Account />} />
           </Route>
 
           <Route element={<ProtectedRoutes allowedRoles={["host"]} />}>
@@ -46,8 +68,12 @@ function App() {
             <Route path="/host/*" element={<HostN />} />
           </Route>
 
-          <Route element={<ProtectedRoutes allowedRoles={["admin"]} />}>
-            <Route path="/admin/*" element={<div>Admin Panel</div>} />
+          <Route element={<ProtectedRoutes allowedRoles={['admin']} />}>
+            <Route path="/admin/profile" element={<AdminProfilePage />} />
+            <Route path="/admin/properties/:id" element={<AdminPropertyDetailsPage />} />
+            <Route path="/admin/reservations/:id" element={<AdminReservationDetailsPage />} />
+            <Route path="/admin/reviews/:id" element={<AdminReviewDetailsPage />} />
+            <Route path="/admin/*" element={<Admin />} />
           </Route>
         </Routes>
       </AuthProvider>
@@ -56,3 +82,6 @@ function App() {
 }
 
 export default App
+
+
+

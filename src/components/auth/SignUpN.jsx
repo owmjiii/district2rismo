@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 
 export const SignUpN = ({ email: initialEmail = '', onBack, onClose }) => {
@@ -37,7 +37,9 @@ export const SignUpN = ({ email: initialEmail = '', onBack, onClose }) => {
         <section className="signup-cardN position-relative container px-4 pt-2 pb-4 px-md-5 pt-md-3 pb-md-5 rounded-5 shadow text-white">
             
             <div className="d-flex align-items-center justify-content-between mb-4">
-                <button type="button" className="btn btn-link text-white text-decoration-none p-0 fs-3" aria-label="Go back" onClick={onBack}>←</button>
+                <button type="button" className="btn d-inline-flex align-items-center justify-content-center p-0 signup-backN" aria-label="Go back" onClick={onBack}>
+                    <i className="bi bi-arrow-left" aria-hidden="true" />
+                </button>
                 <button type="button" className="btn-close btn-close-white" aria-label="Close" onClick={onClose} />
             </div>
 
@@ -76,9 +78,11 @@ export const SignUpN = ({ email: initialEmail = '', onBack, onClose }) => {
 
                 <div>
                     <label className="form-label fw-bold" htmlFor="signup-password">Password</label>
-                    <div className="input-group">
-                        <input id="signup-password" className="form-control form-control-lg signup-inputN fs-6" type={showPassword ? 'text' : 'password'} name="password" autoComplete="new-password" minLength={8} placeholder="At least 8 characters" required />
-                        <button className="btn btn-outline-warning" type="button" onClick={() => setShowPassword((visible) => !visible)} aria-label={showPassword ? 'Hide password' : 'Show password'}>{showPassword ? 'Hide' : 'Show'}</button>
+                    <div className="position-relative">
+                        <input id="signup-password" className="form-control form-control-lg signup-inputN fs-6 pe-5" type={showPassword ? 'text' : 'password'} name="password" autoComplete="new-password" minLength={8} placeholder="At least 8 characters" required />
+                        <button className="btn position-absolute top-50 end-0 translate-middle-y me-2 p-2 border-0 bg-transparent text-warning" type="button" onClick={() => setShowPassword((visible) => !visible)} aria-label={showPassword ? 'Hide password' : 'Show password'} aria-pressed={showPassword}>
+                            <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`} aria-hidden="true" />
+                        </button>
                     </div>
                 </div>
 
@@ -86,7 +90,7 @@ export const SignUpN = ({ email: initialEmail = '', onBack, onClose }) => {
                     <p className="small mb-2">We may send you updates, deals, and account news. You can change your preferences anytime.</p>
                     <div className="form-check">
                         <input className="form-check-input" id="signup-no-promotions" type="checkbox" name="noPromotions" value="true" />
-                        <label className="form-check-label small" htmlFor="signup-no-promotions">I don’t want to receive promotional emails.</label>
+                        <label className="form-check-label small" htmlFor="signup-no-promotions">I donâ€™t want to receive promotional emails.</label>
                     </div>
                 </div>
 
@@ -97,3 +101,7 @@ export const SignUpN = ({ email: initialEmail = '', onBack, onClose }) => {
         </section>
     )
 }
+
+
+
+

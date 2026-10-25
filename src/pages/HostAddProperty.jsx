@@ -8,9 +8,41 @@ import { PropertyRulesPolicies } from '../components/HostSide/AddProperty/6-Prop
 import { VerificationSubmission } from '../components/HostSide/AddProperty/7-Verification-Submission.jsx'
 import { HostViewPropertyNav } from '../components/HostSide/ViewPropertyDetails/HostViewPropertyNav.jsx'
 
-export function HostAddProperty({ onBack, onNext, mode = 'add', property }) {
+export function HostAddProperty({ onBack, onNext, onReject, onApprove, onRemoveUnhide, onRemoveHide, mode = 'add', property }) {
     const [step, setStep] = useState(1)
     const [draft, setDraft] = useState(property)
+
+    const isReview = mode === 'review'
+    const [reviewAction, setReviewAction] = useState(null)
+
+    const handleReject = () => {
+        if (reviewAction === 'rejected') {
+            onRemoveUnhide?.(draft)
+            return
+        }
+        if (reviewAction === 'approved') {
+            onRemoveHide?.(draft)
+            return
+        }
+
+        setReviewAction('rejected')
+        onReject?.(draft)
+    }
+
+    const handleApprove = () => {
+        if (reviewAction === 'approved') {
+            onRemoveHide?.(draft)
+            return
+        }
+        if (reviewAction === 'rejected') {
+            onRemoveUnhide?.(draft)
+            return
+        }
+
+        setReviewAction('approved')
+        onApprove?.(draft)
+    }
+
     const updateProperty = (changes) => {
         setDraft((current) => ({
             ...current,
@@ -20,79 +52,120 @@ export function HostAddProperty({ onBack, onNext, mode = 'add', property }) {
                 : {}),
         }))
     }
-    const editNavigation = mode === 'edit' ? (
+    const editNavigation = mode === 'edit' || isReview ? (
         <HostViewPropertyNav
             activeStep={step}
             onStepChange={setStep}
             onBack={onBack}
+            currentLabel={isReview ? 'Property Details' : 'Edit Property'}
+            showBreadcrumb={!isReview}
+            compact={isReview}
         />
     ) : null
 
     return (
         <main className={`host-add-property-pageN container-fluid px-0${mode === 'edit' ? ' host-edit-wizardN' : ''}`}>
-            {step === 1 ? (
-                <BasicPropInfo
-                    onBack={onBack}
-                    onNext={() => setStep(2)}
-                    property={mode === 'edit' ? draft : undefined}
-                    onPropertyChange={updateProperty}
-                    editNavigation={editNavigation}
-                />
-            ) : step === 2 ? (
-                <AmenitiesFacilities
-                    onExit={onBack} 
-                    onBack={() => setStep(1)}
-                    onNext={() => setStep(3)}
-                    property={mode === 'edit' ? draft : undefined}
-                    onPropertyChange={updateProperty}
-                    editNavigation={editNavigation}
-                />
-            ) : step === 3 ? (
-                <PhotosMedia
-                    onExit={onBack}
-                    onBack={() => setStep(2)}
-                    onNext={() => setStep(4)}
-                    property={draft}
-                    onPropertyChange={updateProperty}
-                    editNavigation={editNavigation}
-                />
-            ) : step === 4 ? (
-                <CheckInCheckOutTimesRules
-                    onExit={onBack}
-                    onBack={() => setStep(3)}
-                    onNext={() => setStep(5)}
-                    property={mode === 'edit' ? draft : undefined}
-                    onPropertyChange={updateProperty}
-                    editNavigation={editNavigation}
-                />
-            ) : step === 5 ? (
-                <Bedrooms
-                    onExit={onBack}
-                    onBack={() => setStep(4)}
-                    onNext={() => setStep(6)}
-                    property={draft}
-                    onPropertyChange={updateProperty}
-                    editNavigation={editNavigation}
-                />
-            ) : step === 6 ? (
-                <PropertyRulesPolicies
-                    onExit={onBack}
-                    onBack={() => setStep(5)}
-                    onNext={() => setStep(7)}
-                    property={mode === 'edit' ? draft : undefined}
-                    onPropertyChange={updateProperty}
-                    editNavigation={editNavigation}
-                />
-            ) : (
-                <VerificationSubmission
-                    onBack={() => setStep(6)}
-                    onSubmit={(verificationFiles) => onNext?.({ ...draft, verificationFiles })}
-                    property={draft}
-                    onPropertyChange={updateProperty}
-                    isEditing={mode === 'edit'}
-                    editNavigation={editNavigation}
-                />
+            {isReview && editNavigation}
+
+            <fieldset
+                disabled={isReview}
+                className={isReview ? 'admin-property-review-fieldsN' : ''}
+            >
+                {step === 1 ? (
+                    <BasicPropInfo
+                        onBack={onBack}
+                        onNext={() => setStep(2)}
+                        property={mode === 'edit' ? draft : undefined}
+                        onPropertyChange={updateProperty}
+                        editNavigation={mode === 'edit' ? editNavigation : null}
+                    />
+                ) : step === 2 ? (
+                    <AmenitiesFacilities
+                        onExit={onBack}
+                        onBack={() => setStep(1)}
+                        onNext={() => setStep(3)}
+                        property={mode === 'edit' ? draft : undefined}
+                        onPropertyChange={updateProperty}
+                        editNavigation={mode === 'edit' ? editNavigation : null}
+                    />
+                ) : step === 3 ? (
+                    <PhotosMedia
+                        onExit={onBack}
+                        onBack={() => setStep(2)}
+                        onNext={() => setStep(4)}
+                        property={draft}
+                        onPropertyChange={updateProperty}
+                        editNavigation={mode === 'edit' ? editNavigation : null}
+                    />
+                ) : step === 4 ? (
+                    <CheckInCheckOutTimesRules
+                        onExit={onBack}
+                        onBack={() => setStep(3)}
+                        onNext={() => setStep(5)}
+                        property={mode === 'edit' ? draft : undefined}
+                        onPropertyChange={updateProperty}
+                        editNavigation={mode === 'edit' ? editNavigation : null}
+                    />
+                ) : step === 5 ? (
+                    <Bedrooms
+                        onExit={onBack}
+                        onBack={() => setStep(4)}
+                        onNext={() => setStep(6)}
+                        property={draft}
+                        onPropertyChange={updateProperty}
+                        editNavigation={mode === 'edit' ? editNavigation : null}
+                    />
+                ) : step === 6 ? (
+                    <PropertyRulesPolicies
+                        onExit={onBack}
+                        onBack={() => setStep(5)}
+                        onNext={() => setStep(7)}
+                        property={mode === 'edit' ? draft : undefined}
+                        onPropertyChange={updateProperty}
+                        editNavigation={mode === 'edit' ? editNavigation : null}
+                    />
+                ) : (
+                    <VerificationSubmission
+                        onBack={() => setStep(6)}
+                        onSubmit={(verificationFiles) => onNext?.({ ...draft, verificationFiles })}
+                        property={draft}
+                        onPropertyChange={updateProperty}
+                        isEditing={mode === 'edit'}
+                        editNavigation={mode === 'edit' ? editNavigation : null}
+                    />
+                )}
+            </fieldset>
+
+            {isReview && (
+                <div className="d-flex justify-content-end gap-2 px-3 px-md-4 px-lg-5 pb-4 mx-2 admin-property-review-actionsN">
+                    <button
+                        type="button"
+                        className="btn rounded-pill px-5 py-2 admin-property-review-rejectN"
+                        onClick={handleReject}
+                    >
+                        {reviewAction ? 'Remove' : 'Reject'}
+                    </button>
+
+                    <button
+                        type="button"
+                        className="btn rounded-pill px-5 py-2 admin-property-review-approveN"
+                        onClick={handleApprove}
+                    >
+                        {reviewAction === 'rejected' ? 'Unhide' : reviewAction === 'approved' ? 'Hide' : 'Approved'}
+                    </button>
+                </div>
             )}
         </main>
     )
 }
+
+
+
+
+
+
+
+
+
+
+

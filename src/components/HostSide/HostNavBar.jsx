@@ -4,8 +4,10 @@ import Offcanvas from 'react-bootstrap/Offcanvas'
 import Logo2Rismo from '../../images/2Rismo Logo.png'
 import { HostSideBarN } from './HostSideBarN.jsx'
 
-export const HostNavBar = ({ activeSection, onSelect }) => {
+export const HostNavBar = ({ activeSection, onSelect, preview = false }) => {
     const [showMenu, setShowMenu] = useState(false)
+    const dashboardPath = preview ? '/host-preview' : '/host'
+    const profilePath = preview ? '/host-profile-preview' : '/host/profile'
 
     const handleSelect = (section) => {
         onSelect?.(section)
@@ -28,7 +30,7 @@ export const HostNavBar = ({ activeSection, onSelect }) => {
         <>
             <header className={`site-header container-fluid d-flex align-items-center justify-content-between${isScrolled ? ' is-scrolled' : ''}`}>
                 <Link
-                    to="/host"
+                    to={dashboardPath}
                     className="d-inline-flex"
                     aria-label="Go to host dashboard"
                     onClick={() => onSelect?.('Dashboard')}
@@ -38,7 +40,7 @@ export const HostNavBar = ({ activeSection, onSelect }) => {
 
                 <div className="d-flex align-items-center gap-2">
                     <Link
-                        to="/host/profile"
+                        to={profilePath}
                         className="host-profile-placeholderN rounded-circle border border-warning d-flex align-items-center justify-content-center"
                         aria-label="Open my profile"
                     >

@@ -1,4 +1,4 @@
-import logo from '../../images/2Rismo Logo.png'
+﻿import logo from '../../images/2Rismo Logo.png'
 import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { SignUpN } from './SignUpN.jsx'
@@ -8,6 +8,7 @@ import { db } from '../../firebase'
 export const LoginN = ({ onClose }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
     const [showPasswordInput, setShowPasswordInput] = useState(false)
     const [showSignUp, setShowSignUp] = useState(false)
     const [error, setError] = useState('')
@@ -86,15 +87,26 @@ export const LoginN = ({ onClose }) => {
                 />
 
                 {showPasswordInput && (
-                    <input 
-                        className="form-controlN form-control-lg mb-2" 
-                        type="password" 
-                        placeholder="Enter password" 
-                        value={password} 
-                        onChange={(event) => setPassword(event.target.value)} 
-                        autoFocus
-                        required 
-                    />
+                    <div className="position-relative mb-2">
+                        <input
+                            className="form-controlN form-control-lg pe-5"
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder="Enter password"
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                            autoFocus
+                            required
+                        />
+                        <button
+                            type="button"
+                            className="btn position-absolute top-50 end-0 translate-middle-y me-2 p-2 border-0 bg-transparent text-white"
+                            onClick={() => setShowPassword((visible) => !visible)}
+                            aria-label={showPassword ? 'Hide password' : 'Show password'}
+                            aria-pressed={showPassword}
+                        >
+                            <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`} aria-hidden="true" />
+                        </button>
+                    </div>
                 )}
 
                 <p className="smallN text-secondary mb-0">

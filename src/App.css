@@ -1,4 +1,4 @@
-/* Login to*/
+﻿/* Login to*/
 .login-cardN {
     width: min(100%, 600px);
     min-height: 600px;
@@ -482,6 +482,17 @@
 
 .signup-cardN::-webkit-scrollbar {
     display: none;
+}
+
+.signup-backN {
+    color: #E4DFD8;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.signup-backN:hover,
+.signup-backN:focus-visible {
+    color: #fff;
 }
 
 .signup-mutedN {
@@ -1560,7 +1571,7 @@ textarea:-webkit-autofill:focus {
 }
 
 /* Host add property step 1 */
-.host-edit-wizardN .host-add-propertyN > nav {
+.host-edit-wizardN .host-add-propertyN>nav {
     display: none;
 }
 
@@ -1576,7 +1587,7 @@ textarea:-webkit-autofill:focus {
 
 .host-add-propertyN .breadcrumb-item+.breadcrumb-item::before {
     color: #E4DFD8;
-    content: "›";
+    content: "â€º";
 }
 
 .host-add-property-crumbN,
@@ -1846,6 +1857,1678 @@ textarea:-webkit-autofill:focus {
 .host-verification-dropN:hover {
     border-color: #FFB200;
     color: #FFB200;
+}
+
+
+/* admin */
+
+.admin-navbarN {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    min-height: 4.2rem;
+    padding: .8rem 2rem;
+    background-color: #24221B;
+    border-bottom: 1px solid #302E27;
+}
+
+.admin-workspaceN {
+    min-height: calc(100vh - 5.5rem);
+}
+
+.admin-sidebarN {
+    height: 100%;
+    min-height: calc(100vh - 5.5rem);
+    border-right: 1px solid #14130F;
+}
+
+.admin-dashboardN {
+    width: 100%;
+    padding: 1rem 1.5rem;
+}
+
+@media (max-width: 991.98px) {
+    .admin-sidebarN {
+        min-height: auto;
+        border-right: 0;
+        border-bottom: 1px solid #14130F;
+    }
+
+    .admin-navbarN {
+        padding-inline: 1rem;
+    }
+
+    .admin-dashboardN {
+        padding: 1rem;
+    }
+}
+
+/* admin dashboard */
+.admin-dashboardN {
+    color: #E4DFD8;
+}
+
+.admin-dashboardN h1 {
+    color: #FFB200;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.admin-statN {
+    min-height: 8.75rem;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-statN.active {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-stat-iconN {
+    width: 1.75rem;
+    height: 1.75rem;
+    border: 1px solid currentColor;
+    font-size: 1rem;
+}
+
+.admin-statN.active .admin-stat-iconN {
+    background-color: #24221B;
+    border-color: #24221B;
+    color: #FFB200;
+}
+
+.admin-stat-valueN {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1;
+}
+
+.admin-popularN {
+    border: 1px solid #38362D;
+}
+
+.admin-resortN {
+    border: 1px solid #38362D;
+}
+
+.admin-resort-rank {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.admin-resort-imageN {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+}
+
+@media (max-width: 575.98px) {
+    .admin-resort-rank {
+        font-size: 1.75rem;
+    }
+
+    .admin-resortN .row {
+        --bs-gutter-x: 0.5rem;
+    }
+}
+
+/* admin users */
+.admin-usersN {
+    color: #E4DFD8;
+}
+
+.admin-usersN h1 {
+    color: #FFB200;
+}
+
+.admin-user-filterN {
+    min-width: 6rem;
+    border: 1px solid #FFB200;
+    border-radius: 50rem;
+    color: #FFB200;
+}
+
+.admin-user-filterN:hover,
+.admin-user-filterN.active {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-users-searchN .form-control,
+.admin-users-searchN .input-group-text {
+    border: 0;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-users-searchN .form-control::placeholder {
+    color: #A7A49C;
+}
+
+.admin-users-searchN .input-group-text {
+    padding-inline: 1rem;
+    font-size: 1.2rem;
+}
+
+.admin-user-rowN {
+    min-height: 3.75rem;
+    border: 1px solid #38362D;
+    color: #E4DFD8;
+}
+
+.admin-user-avatarN {
+    width: 2.875rem;
+    height: 2.875rem;
+    background-color: #FFB200;
+    color: #24221B;
+    font-size: 1.5rem;
+}
+
+.admin-user-statusN {
+    min-width: 4.25rem;
+    background-color: #38362D;
+    color: #FFB200;
+}
+
+.admin-user-statusN.active {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-user-detailsN {
+    padding: 0;
+    color: #FFB200;
+    text-decoration: underline;
+}
+
+/* Admin hosts */
+.admin-hostsN {
+    color: #E4DFD8;
+}
+
+.admin-hostsN h1 {
+    color: #FFB200;
+}
+
+.admin-host-filterN {
+    min-width: 6rem;
+    border: 1px solid #FFB200;
+    border-radius: 50rem;
+    color: #FFB200;
+}
+
+.admin-host-filterN:hover,
+.admin-host-filterN.active {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-host-searchN .form-control,
+.admin-host-searchN .input-group-text {
+    border: 0;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-host-searchN .form-control::placeholder {
+    color: #A7A49C;
+}
+
+.admin-host-searchN .input-group-text {
+    padding-inline: 1rem;
+    font-size: 1.2rem;
+}
+
+.admin-host-rowN {
+    min-height: 3.75rem;
+    border: 1px solid #38362D;
+    color: #E4DFD8;
+}
+
+.admin-host-avatarN {
+    width: 2.875rem;
+    height: 2.875rem;
+    background-color: #FFB200;
+    color: #24221B;
+    font-size: 1.5rem;
+}
+
+.admin-host-statusN {
+    min-width: 4.25rem;
+    background-color: #38362D;
+    color: #FFB200;
+}
+
+.admin-host-statusN.unverified {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-host-detailsN {
+    padding: 0;
+    color: #FFB200;
+    text-decoration: underline;
+}
+
+/* admin sidebar */
+.admin-sidebarN {
+    min-height: calc(100vh - 4rem);
+    background-color: #24221B;
+    color: #BDBBB5;
+}
+
+.admin-sidebarN .list-group {
+    --bs-list-group-bg: transparent;
+    --bs-list-group-border-width: 0;
+    --bs-list-group-color: #BDBBB5;
+}
+
+.admin-sidebarN .list-group-item {
+    position: relative;
+    min-height: 2.85rem;
+    padding: .65rem 1.5rem;
+    color: #BDBBB5;
+    background: transparent;
+    border: 0;
+}
+
+.admin-sidebarN .list-group-item:hover {
+    color: #E4DFD8;
+    background-color: #302E27;
+}
+
+.admin-sidebarN .list-group-item.active {
+    color: #E4DFD8;
+    background-color: #38362D;
+}
+
+.admin-sidebarN .list-group-item.active i {
+    color: #FFB200;
+}
+
+.admin-sidebarN .list-group-item.active::before {
+    position: absolute;
+    inset: .25rem 0 .25rem auto;
+    width: .25rem;
+    border-radius: .25rem 0 0 .25rem;
+    background-color: #FFB200;
+    content: "";
+}
+
+@media (min-width: 992px) {
+    .admin-shellN {
+        height: calc(100vh - 1.5rem);
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .admin-navbarN {
+        flex: 0 0 4.2rem;
+    }
+
+    .admin-shellN>main.container-fluid {
+        display: flex;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .admin-workspaceN {
+        flex: 1 1 auto;
+        height: 100%;
+        min-height: 0;
+    }
+
+    .admin-workspaceN>[class*="col-"] {
+        height: 100%;
+        min-height: 0;
+    }
+
+    .admin-sidebarN {
+        height: 100%;
+        min-height: 0;
+    }
+
+    .admin-content-scrollN {
+        min-height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior: contain;
+    }
+}
+
+/* admin roperties */
+/* Admin properties */
+.admin-propertiesN {
+    color: #E4DFD8;
+}
+
+.admin-propertiesN h1 {
+    color: #FFB200;
+}
+
+.admin-property-rowN {
+    min-height: 3.75rem;
+    border: 1px solid #38362D;
+    color: #E4DFD8;
+}
+
+.admin-property-imageN {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+}
+
+.admin-property-statusN {
+    min-width: 4.4rem;
+    background-color: #38362D;
+    color: #FFB200;
+}
+
+.admin-property-statusN.pending {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+/* Admin reservations */
+.admin-reservationsN {
+    color: #E4DFD8;
+}
+
+.admin-reservationsN h1 {
+    color: #FFB200;
+}
+
+.admin-reservation-propertyN {
+    min-width: 17rem;
+    border: 0;
+    border-radius: 50rem;
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    background-color: #FFB200;
+    color: #24221B;
+    text-align: center;
+}
+
+.admin-reservation-filterN {
+    min-width: 8rem;
+    border: 1px solid #FFB200;
+    border-radius: 50rem;
+    color: #FFB200;
+}
+
+.admin-reservation-filterN:hover,
+.admin-reservation-filterN.active,
+.admin-reservation-dateN {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-reservation-dateN {
+    display: flex;
+    min-width: 2.75rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-reservation-searchN .form-control,
+.admin-reservation-searchN .input-group-text {
+    border: 0;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-reservation-searchN .form-control::placeholder {
+    color: #A7A49C;
+}
+
+.admin-reservation-searchN .input-group-text {
+    padding-inline: 1rem;
+    font-size: 1.2rem;
+}
+
+.admin-reservation-tableN {
+    --bs-table-color: #E4DFD8;
+    --bs-table-bg: transparent;
+    color: #E4DFD8;
+    border-collapse: separate;
+    border-spacing: 0 0.2rem;
+}
+
+.admin-reservation-tableN thead {
+    border-bottom: 1px solid #38362D;
+}
+
+.admin-reservation-tableN th {
+    color: #E4DFD8;
+    background-color: transparent;
+}
+
+.admin-reservation-tableN td {
+    color: #E4DFD8;
+    background-color: #38362D;
+}
+
+.admin-reservation-tableN td:first-child {
+    border-radius: 0.3rem 0 0 0.3rem;
+}
+
+.admin-reservation-tableN td:last-child {
+    border-radius: 0 0.3rem 0.3rem 0;
+}
+
+/* Admin reviews */
+.admin-reviewsN {
+    color: #E4DFD8;
+}
+
+.admin-reviewsN h1 {
+    color: #FFB200;
+}
+
+.admin-review-propertyN {
+    min-width: 17rem;
+    border: 0;
+    border-radius: 50rem;
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    background-color: #FFB200;
+    color: #24221B;
+    text-align: center;
+}
+
+.admin-review-filterN {
+    min-width: 7.5rem;
+    border: 1px solid #FFB200;
+    border-radius: 50rem;
+    color: #FFB200;
+}
+
+.admin-review-filterN:hover,
+.admin-review-filterN.active,
+.admin-review-dateN {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-review-dateN {
+    display: flex;
+    min-width: 2.75rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-review-searchN .form-control,
+.admin-review-searchN .input-group-text {
+    border: 0;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-review-searchN .form-control::placeholder {
+    color: #A7A49C;
+}
+
+.admin-review-searchN .input-group-text {
+    padding-inline: 1rem;
+    font-size: 1.2rem;
+}
+
+.admin-review-tableN {
+    --bs-table-color: #E4DFD8;
+    --bs-table-bg: transparent;
+    color: #E4DFD8;
+    border-collapse: separate;
+    border-spacing: 0 0.4rem;
+}
+
+.admin-review-tableN th {
+    padding: 0.75rem;
+    border-bottom: 1px solid #38362D;
+    color: #E4DFD8;
+    font-weight: 500;
+}
+
+.admin-review-tableN td {
+    padding: 0.75rem;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-review-tableN td:first-child {
+    border-radius: 0.3rem 0 0 0.3rem;
+}
+
+.admin-review-tableN td:last-child {
+    border-radius: 0 0.3rem 0.3rem 0;
+}
+
+.admin-review-actionN {
+    color: #FFB200;
+    text-decoration: underline;
+}
+
+/* Admin reports */
+.admin-reportsN {
+    color: #E4DFD8;
+}
+
+.admin-reportsN h1 {
+    color: #FFB200;
+}
+
+.admin-report-propertyN,
+.admin-report-exportN {
+    border: 0;
+    border-radius: 50rem;
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-report-propertyN {
+    min-width: 17rem;
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    text-align: center;
+}
+
+.admin-report-dateN {
+    width: 12.5rem;
+    border: 1px solid #BDBBB5;
+    background-color: transparent;
+    color: #E4DFD8;
+}
+
+.admin-report-dateN::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.admin-report-statN {
+    min-height: 9.5rem;
+    border: 0;
+    border-radius: 0.75rem;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-report-statN .card-title {
+    font-weight: 600;
+}
+
+.admin-report-statusN {
+    border: 1px solid #38362D;
+    border-radius: 0.75rem;
+    background-color: transparent;
+    color: #E4DFD8;
+}
+
+.admin-report-statusN .list-group-item {
+    border: 0;
+    background-color: transparent;
+    color: #E4DFD8;
+}
+
+.admin-report-exportN {
+    min-width: 14rem;
+    padding: 0.75rem 2rem;
+}
+
+.admin-report-propertyN:focus,
+.admin-report-dateN:focus,
+.admin-report-exportN:focus-visible {
+    box-shadow: 0 0 0 0.2rem rgba(255, 178, 0, 0.25);
+}
+
+/* Admin reports */
+.admin-reportsN {
+    color: #E4DFD8;
+}
+
+.admin-reportsN h1 {
+    color: #FFB200;
+}
+
+.admin-report-propertyN,
+.admin-report-exportN {
+    border: 0;
+    border-radius: 50rem;
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-report-propertyN {
+    min-width: 17rem;
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    text-align: center;
+}
+
+.admin-report-dateN {
+    width: 12.5rem;
+    border: 1px solid #BDBBB5;
+    background-color: transparent;
+    color: #E4DFD8;
+}
+
+.admin-report-dateN::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.admin-report-statN {
+    min-height: 9.5rem;
+    border: 0;
+    border-radius: 0.75rem;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-report-statN .card-title {
+    font-weight: 600;
+}
+
+.admin-report-statusN {
+    border: 1px solid #38362D;
+    border-radius: 0.75rem;
+    background-color: transparent;
+    color: #E4DFD8;
+}
+
+.admin-report-statusN .list-group-item {
+    border: 0;
+    background-color: transparent;
+    color: #E4DFD8;
+}
+
+.admin-report-exportN {
+    min-width: 14rem;
+    padding: 0.75rem 2rem;
+}
+
+.admin-report-propertyN:focus,
+.admin-report-dateN:focus,
+.admin-report-exportN:focus-visible {
+    box-shadow: 0 0 0 0.2rem rgba(255, 178, 0, 0.25);
+}
+
+/* Admin categories and amenities */
+.admin-categoriesN {
+    color: #E4DFD8;
+}
+
+.admin-categoriesN h1 {
+    color: #FFB200;
+}
+
+.admin-category-primaryN {
+    min-width: 9rem;
+    border: 0;
+    border-radius: 50rem;
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-category-primaryN:hover {
+    background-color: #e6a100;
+    color: #24221B;
+}
+
+.admin-category-tableN {
+    --bs-table-color: #E4DFD8;
+    --bs-table-bg: transparent;
+    color: #E4DFD8;
+}
+
+.admin-category-tableN th {
+    padding: 0.75rem;
+    border-bottom: 1px solid #38362D;
+    color: #E4DFD8;
+    font-weight: 500;
+}
+
+.admin-category-tableN td {
+    padding: 0.75rem;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-category-tableN td:first-child {
+    border-radius: 0.3rem 0 0 0.3rem;
+}
+
+.admin-category-tableN td:last-child {
+    border-radius: 0 0.3rem 0.3rem 0;
+}
+
+.admin-amenitiesN {
+    border: 1px solid #38362D;
+    border-radius: 0.75rem;
+}
+
+.admin-amenity-tabN {
+    border: 1px solid #FFB200;
+    border-radius: 50rem;
+    color: #FFB200;
+}
+
+.admin-amenity-tabN:hover,
+.admin-amenity-tabN.active {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-amenity-listN {
+    min-height: 100%;
+    background-color: #38362D;
+    font-size: 1.1rem;
+}
+
+.admin-category-inputN {
+    min-height: 3rem;
+    border: 1px solid #BDBBB5;
+    background-color: transparent;
+    color: #E4DFD8;
+}
+
+.admin-category-inputN::placeholder {
+    color: #BDBBB5;
+}
+
+.admin-category-inputN:focus {
+    border-color: #FFB200;
+    background-color: transparent;
+    color: #E4DFD8;
+    box-shadow: 0 0 0 0.2rem rgba(255, 178, 0, 0.2);
+}
+
+/* Admin host details */
+.admin-host-detailN {
+    color: #E4DFD8;
+}
+
+.admin-host-detailN .breadcrumb {
+    --bs-breadcrumb-divider: '\203A';
+    --bs-breadcrumb-divider-color: #E4DFD8;
+    align-items: center;
+}
+
+.admin-host-detailN .breadcrumb-item {
+    color: #E4DFD8;
+}
+
+.admin-host-detailN .breadcrumb-item.active {
+    color: #FFB200;
+}
+
+.admin-host-backN {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+}
+
+.admin-host-detail-headerN,
+.admin-host-detail-headerN .card-body {
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-host-detail-headerN h1 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.admin-host-detail-avatarN {
+    width: 5rem;
+    height: 5rem;
+    background-color: #FFB200;
+    color: #24221B;
+    font-size: 2.5rem;
+}
+
+.admin-host-detail-statusN {
+    min-width: 7.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-host-detail-panelN {
+    border: 1px solid #38362D;
+    background-color: transparent;
+    color: #E4DFD8;
+}
+
+.admin-host-propertiesN {
+    min-height: 17rem;
+}
+
+.admin-host-properties-tableN {
+    --bs-table-color: #E4DFD8;
+    --bs-table-bg: transparent;
+    color: #E4DFD8;
+    font-size: 0.875rem;
+}
+
+.admin-host-properties-tableN th {
+    padding: 0.75rem;
+    border-bottom: 1px solid #38362D;
+    color: #E4DFD8;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.admin-host-properties-tableN td {
+    padding: 0.75rem;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-host-properties-tableN td:first-child {
+    border-radius: 0.3rem 0 0 0.3rem;
+}
+
+.admin-host-properties-tableN td:last-child {
+    border-radius: 0 0.3rem 0.3rem 0;
+}
+
+.admin-host-deactivateN,
+.admin-host-revokeN {
+    border: 0;
+}
+
+.admin-host-deactivateN {
+    background-color: #38362D;
+    color: #FFB200;
+}
+
+.admin-host-revokeN {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+/* admin revoke */
+.admin-host-revoke-dialogN {
+    width: min(34.5rem, calc(100vw - 1.5rem));
+    max-width: none;
+}
+
+.admin-host-revoke-modalN {
+    position: relative;
+    border: 1px solid #38362D;
+    border-radius: 0.75rem;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-host-revoke-bodyN {
+    padding: 1.5rem 1.85rem 2.25rem;
+}
+
+.admin-host-revoke-selectN {
+    min-height: 3rem;
+    border: 1px solid #E4DFD8;
+    background-color: transparent;
+    color: #E4DFD8;
+}
+
+.admin-host-revoke-selectN:focus {
+    border-color: #FFB200;
+    background-color: transparent;
+    color: #E4DFD8;
+    box-shadow: 0 0 0 0.2rem rgba(255, 178, 0, 0.2);
+}
+
+.admin-host-revoke-selectN option {
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-host-revoke-notifyN .form-check-input {
+    border-color: #FFB200;
+    background-color: transparent;
+}
+
+.admin-host-revoke-notifyN .form-check-input:checked {
+    border-color: #FFB200;
+    background-color: #FFB200;
+}
+
+@media (max-width: 575.98px) {
+    .admin-host-revoke-bodyN {
+        padding: 1.5rem 1.25rem;
+    }
+}
+
+/* Admin host deactivation */
+.admin-host-deactivate-dialogN {
+    width: min(34.5rem, calc(100vw - 1.5rem));
+    max-width: none;
+}
+
+.admin-host-deactivate-modalN {
+    position: relative;
+    border: 1px solid #38362D;
+    border-radius: 0.75rem;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-host-deactivate-bodyN {
+    padding: 1.5rem 1.85rem 2.25rem;
+}
+
+.admin-host-deactivate-closeN {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.85rem;
+    z-index: 1;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #C8C5BD;
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.admin-host-deactivate-titleN {
+    margin: 0 1.5rem 2rem;
+    color: #FFB200;
+    font-size: 1.75rem;
+}
+
+.admin-host-deactivate-messageN {
+    margin-bottom: 2rem;
+    font-size: 1.15rem;
+    line-height: 1.15;
+}
+
+.admin-host-deactivate-inputN {
+    min-height: 3rem;
+    border: 1px solid #E4DFD8;
+    background-color: transparent;
+    color: #E4DFD8;
+}
+
+.admin-host-deactivate-inputN::placeholder {
+    color: #BDBBB5;
+}
+
+.admin-host-deactivate-inputN:focus {
+    border-color: #FFB200;
+    background-color: transparent;
+    color: #E4DFD8;
+    box-shadow: 0 0 0 0.2rem rgba(255, 178, 0, 0.2);
+}
+
+.admin-host-deactivate-cancelN,
+.admin-host-deactivate-confirmN {
+    min-height: 2.9rem;
+    flex: 0 1 10.5rem;
+    border-radius: 50rem;
+}
+
+.admin-host-deactivate-cancelN {
+    border: 1px solid #FFB200;
+    color: #FFB200;
+}
+
+.admin-host-deactivate-confirmN {
+    flex-basis: 13.25rem;
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+@media (max-width: 575.98px) {
+    .admin-host-deactivate-bodyN {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .admin-host-deactivate-titleN {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/*admin property details */
+/* Admin property review */
+.admin-property-detailsN {
+    color: #E4DFD8;
+}
+
+.admin-property-detailsN .breadcrumb {
+    --bs-breadcrumb-divider: '\203A';
+    --bs-breadcrumb-divider-color: #E4DFD8;
+}
+
+.admin-property-detailsN .breadcrumb-item {
+    color: #E4DFD8;
+}
+
+.admin-property-detailsN .breadcrumb-item.active {
+    color: #FFB200;
+}
+
+.admin-property-backN {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+}
+
+.admin-property-detail-headerN {
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-property-detail-imageN {
+    width: 6.25rem;
+    height: 6.25rem;
+    object-fit: cover;
+}
+
+.admin-property-detail-statusN {
+    min-width: 8rem;
+    padding: 0.5rem 1rem;
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-property-review-fieldsN {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #38362D;
+    border-radius: 0.5rem;
+}
+
+.admin-property-review-fieldsN .host-add-propertyN > nav[aria-label="Breadcrumb"],
+.admin-property-review-fieldsN .host-add-propertyN > h1,
+.admin-property-review-fieldsN .host-add-property-dividerN,
+.admin-property-review-fieldsN .host-add-property-backN,
+.admin-property-review-fieldsN .host-add-property-nextN {
+    display: none ;
+}
+
+.admin-property-review-fieldsN .form-control:disabled,
+.admin-property-review-fieldsN .form-select:disabled {
+    opacity: 1;
+    background-color: #24221B;
+    color: #E4DFD8;
+}
+
+.admin-property-rejectN {
+    min-width: 10rem;
+    background-color: #38362D;
+    color: #FFB200;
+}
+
+/* admin user view details */
+.admin-user-detailN {
+    color: #E4DFD8;
+    font-size: 1rem;
+}
+
+.admin-user-detailN * {
+    font-size: 1rem;
+}
+
+.admin-user-detailN .admin-user-detail-headerN h1 {
+    font-size: 2.5rem;
+}
+
+.admin-user-detailN .admin-user-detail-panelN>h2 {
+    font-size: 1.5rem;
+}
+
+.admin-user-detailN .breadcrumb-item,
+.admin-user-detailN .breadcrumb-item button {
+    color: #E4DFD8;
+}
+
+.admin-user-detailN .breadcrumb {
+    display: flex;
+    align-items: center;
+    --bs-breadcrumb-divider: '\203A';
+    --bs-breadcrumb-divider-color: #E4DFD8;
+    font-size: .75rem;
+    line-height: 1.2;
+}
+
+.admin-user-detailN .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    line-height: inherit;
+}
+
+.admin-user-detailN .admin-user-breadcrumb-backN {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #E4DFD8;
+    font: inherit;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.admin-user-detailN .admin-user-breadcrumb-backN:hover,
+.admin-user-detailN .admin-user-breadcrumb-backN:focus,
+.admin-user-detailN .admin-user-breadcrumb-backN:active {
+    color: #E4DFD8;
+    text-decoration: none;
+}
+
+.admin-user-detailN .breadcrumb-item.active {
+    color: #FFB200;
+}
+
+.admin-user-detailN .breadcrumb-item+.breadcrumb-item::before {
+    align-self: center;
+}
+
+.admin-user-detail-headerN,
+.admin-user-bookingN,
+.admin-user-reviewN,
+.admin-user-review-dateN {
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-user-detail-panelN {
+    --bs-card-color: #E4DFD8;
+    background: transparent;
+    border: 1px solid #38362D;
+    color: #E4DFD8;
+}
+
+.admin-user-detail-avatarN {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #FFB200;
+    color: #24221B;
+    font-size: 1.75rem;
+}
+
+.admin-user-detailN .admin-user-statusN {
+    min-width: 4.5rem;
+    background-color: #302E27;
+    color: #FFB200;
+}
+
+.admin-user-detailN .admin-user-statusN.active {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-user-booking-filterN {
+    min-width: 5rem;
+    border: 1px solid #FFB200;
+    border-radius: 50rem;
+    color: #FFB200;
+}
+
+.admin-user-booking-filterN.active {
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-user-bookingN {
+    border: 1px solid #38362D;
+    background-color: transparent;
+}
+
+.admin-user-booking-imageN {
+    width: 6.875rem;
+    height: 6.875rem;
+    object-fit: cover;
+}
+
+.admin-user-booking-copyN {
+    min-width: 0;
+}
+
+.admin-user-booking-detailsN {
+    background-color: #38362D;
+}
+
+.admin-user-review-commentN {
+    border: 1px solid #A7A49C;
+}
+
+.admin-user-reviewN {
+    width: min(36rem, 100%);
+    min-height: 46.25rem;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #38362D !important;
+    border-radius: 1rem;
+    overflow: hidden;
+    background-color: #24221B;
+    color: #E4DFD8;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-user-reviewN * {
+    font-size: inherit;
+}
+
+.admin-user-review-topN {
+    min-height: 13.2rem;
+    align-items: center;
+    flex: 0 0 13.2rem;
+}
+
+.admin-user-review-imageN {
+    width: 11.5rem;
+    height: 11.5rem;
+    object-fit: cover;
+}
+
+.admin-user-review-summaryN {
+    min-width: 0;
+}
+
+.admin-user-review-summaryN h3 {
+    font-size: 1.75rem;
+    line-height: 1.15;
+}
+
+.admin-user-review-summary-dividerN {
+    width: 100%;
+    margin: .5rem 0;
+    border: 0;
+    border-top: 1px solid #38362D;
+    opacity: 1;
+}
+
+.admin-user-review-summaryN>.text-warning:not([aria-label]) {
+    font-size: 1.5rem;
+}
+
+.admin-user-review-summaryN>p:not(.text-warning) {
+    font-size: 1rem;
+}
+
+.admin-user-review-summaryN .text-warning[aria-label] {
+    font-size: 1.75rem;
+    letter-spacing: .1em;
+}
+
+.admin-user-review-contentN {
+    background-color: #302E27;
+    color: #E4DFD8;
+    padding: 1.25rem;
+    font-size: 1.25rem;
+    flex: 1 0 auto;
+}
+
+.admin-user-review-dividerN {
+    margin: 1rem 0 .75rem;
+    border: 0;
+    border-top: 1px solid #A7A49C;
+    opacity: .8;
+}
+
+.admin-user-review-starsN {
+    color: #9B988E;
+}
+
+.admin-user-review-starsN.rated {
+    color: #FFB200;
+}
+
+.admin-user-review-contentN .admin-user-review-starsN {
+    font-size: 1.5rem;
+    letter-spacing: .08em;
+}
+
+.admin-user-review-contentN>.d-flex {
+    min-height: 2.2rem;
+    align-items: center;
+}
+
+.admin-user-review-commentN {
+    border: 1px solid #E4DFD8;
+    border-radius: .5rem;
+    background-color: #302E27;
+    color: #E4DFD8;
+    line-height: 1.2;
+    padding: .75rem !important;
+}
+
+.admin-user-review-dateN {
+    background-color: #454237;
+    color: #E4DFD8;
+    line-height: 1.15;
+    padding: 1rem !important;
+}
+
+@media (max-width: 767.98px) {
+    .admin-user-booking-imageN {
+        width: 5.5rem;
+        height: 5.5rem;
+    }
+
+    .admin-user-reviewN {
+        width: 100%;
+        min-height: 46.25rem;
+    }
+
+    .admin-user-review-topN {
+        min-height: 13.2rem;
+        flex-basis: 13.2rem;
+    }
+
+    .admin-user-review-imageN {
+        width: clamp(8rem, 35vw, 11.5rem);
+        height: clamp(8rem, 35vw, 11.5rem);
+    }
+
+    .admin-user-review-summaryN h3 {
+        font-size: clamp(1.25rem, 5vw, 1.75rem);
+    }
+
+    .admin-user-review-contentN {
+        font-size: 1.25rem;
+    }
+}
+
+.admin-user-actionN {
+    background-color: #38362D;
+    color: #FFB200;
+}
+
+.admin-user-account-buttonN {
+    min-width: 18.5rem;
+    padding: 1rem 2.5rem;
+    border-radius: 50rem;
+    font-size: 1.25rem;
+}
+
+/* Admin user deactivation */
+.admin-deactivate-dialogN {
+    width: min(34.5rem, calc(100vw - 1.5rem));
+    max-width: none;
+}
+
+.admin-deactivate-modalN {
+    position: relative;
+    border: 1px solid #38362D;
+    border-radius: .75rem;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-deactivate-bodyN {
+    padding: 1.5rem 1.85rem 2.25rem;
+}
+
+.admin-deactivate-closeN {
+    position: absolute;
+    top: .75rem;
+    right: .85rem;
+    z-index: 1;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #C8C5BD;
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.admin-deactivate-titleN {
+    margin: 0 1.5rem 1.5rem;
+    color: #FFB200;
+    font-size: 1.75rem;
+}
+
+.admin-deactivate-messageN {
+    margin: 0 0 1.5rem;
+    font-size: 1.15rem;
+    line-height: 1.15;
+}
+
+.admin-deactivate-bodyN .form-label {
+    margin: 0 0 .5rem .25rem;
+    font-size: 1rem;
+}
+
+.admin-deactivate-inputN {
+    min-height: 3rem;
+    border: 1px solid #E4DFD8;
+    border-radius: .5rem;
+    background-color: transparent;
+    color: #E4DFD8;
+    font-size: 1rem;
+}
+
+.admin-deactivate-inputN::placeholder {
+    color: #BDBBB5;
+}
+
+.admin-deactivate-inputN:focus {
+    border-color: #FFB200;
+    background-color: transparent;
+    color: #E4DFD8;
+    box-shadow: 0 0 0 .2rem rgba(255, 178, 0, .2);
+}
+
+.admin-deactivate-cancelN,
+.admin-deactivate-confirmN {
+    min-height: 2.9rem;
+    flex: 0 1 10.5rem;
+    border-radius: 50rem;
+    font-size: 1rem;
+}
+
+.admin-deactivate-cancelN {
+    border: 1px solid #FFB200;
+    color: #FFB200;
+}
+
+.admin-deactivate-cancelN:hover,
+.admin-deactivate-cancelN:focus {
+    border-color: #FFB200;
+    background-color: rgba(255, 178, 0, .1);
+    color: #FFB200;
+}
+
+.admin-deactivate-confirmN {
+    flex-basis: 13.25rem;
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-deactivate-confirmN:hover,
+.admin-deactivate-confirmN:focus {
+    background-color: #E9A300;
+    color: #24221B;
+}
+
+/* Admin user suspension */
+.admin-suspend-dialogN {
+    width: min(34.5rem, calc(100vw - 1.5rem));
+    max-width: none;
+}
+
+.admin-suspend-modalN {
+    position: relative;
+    border: 1px solid #38362D;
+    border-radius: .75rem;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-suspend-bodyN {
+    padding: 1.5rem 1.85rem 2.25rem;
+}
+
+.admin-suspend-closeN {
+    position: absolute;
+    top: .75rem;
+    right: .85rem;
+    z-index: 1;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #C8C5BD;
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.admin-suspend-titleN {
+    margin: 0 1.5rem 2rem;
+    color: #FFB200;
+    font-size: 1.75rem;
+}
+
+.admin-suspend-bodyN>p {
+    font-size: 1.15rem;
+}
+
+.admin-suspend-selectN {
+    min-height: 2.65rem;
+    border: 0;
+    border-radius: 50rem;
+    background-color: #FFB200;
+    color: #24221B;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.admin-suspend-selectN:focus {
+    border-color: #FFB200;
+    box-shadow: 0 0 0 .2rem rgba(255, 178, 0, .2);
+}
+
+.admin-suspend-inputN {
+    min-height: 3rem;
+    border: 1px solid #E4DFD8;
+    background-color: transparent;
+    color: #E4DFD8;
+}
+
+.admin-suspend-inputN:focus {
+    border-color: #FFB200;
+    background-color: transparent;
+    color: #E4DFD8;
+    box-shadow: 0 0 0 .2rem rgba(255, 178, 0, .2);
+}
+
+.admin-suspend-bodyN fieldset {
+    border: 0;
+    padding: 0;
+}
+
+.admin-suspend-bodyN legend {
+    float: none;
+    width: auto;
+}
+
+.admin-suspend-radioN {
+    min-height: 1.7rem;
+    padding-left: 1.65rem;
+}
+
+.admin-suspend-radioN .form-check-input {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-left: -1.65rem;
+    border: 2px solid #FFB200;
+    background-color: transparent;
+}
+
+.admin-suspend-radioN .form-check-input:checked {
+    border-color: #FFB200;
+    background-color: #FFB200;
+}
+
+.admin-suspend-radioN .form-check-input:focus {
+    box-shadow: 0 0 0 .2rem rgba(255, 178, 0, .2);
+}
+
+.admin-suspend-cancelN,
+.admin-suspend-confirmN {
+    min-height: 2.9rem;
+    flex: 0 1 10.5rem;
+    border-radius: 50rem;
+    font-size: 1rem;
+}
+
+.admin-suspend-cancelN {
+    border: 1px solid #FFB200;
+    color: #FFB200;
+}
+
+.admin-suspend-cancelN:hover,
+.admin-suspend-cancelN:focus {
+    border-color: #FFB200;
+    background-color: rgba(255, 178, 0, .1);
+    color: #FFB200;
+}
+
+.admin-suspend-confirmN {
+    flex-basis: 13.25rem;
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.admin-suspend-confirmN:hover,
+.admin-suspend-confirmN:focus {
+    background-color: #E9A300;
+    color: #24221B;
+}
+
+@media (max-width: 575.98px) {
+    .admin-user-account-buttonN {
+        min-width: 0;
+        flex: 1 1 100%;
+    }
+
+    .admin-deactivate-bodyN {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .admin-deactivate-titleN {
+        margin-bottom: 1.5rem;
+    }
+
+    .admin-deactivate-messageN {
+        margin-bottom: 1.5rem;
+    }
+
+    .admin-deactivate-cancelN,
+    .admin-deactivate-confirmN {
+        flex-basis: auto;
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .admin-suspend-bodyN {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .admin-suspend-titleN {
+        margin-bottom: 1.5rem;
+    }
+
+    .admin-suspend-cancelN,
+    .admin-suspend-confirmN {
+        flex-basis: auto;
+        width: 100%;
+    }
+}
+
+/* admin view detail page */
+
+
+/* admin nav bar */
+.admin-mobile-menuN {
+    background-color: #24221B;
+    color: #E4DFD8;
+}
+
+.admin-mobile-menuN .admin-sidebarN {
+    min-height: 100%;
 }
 
 /* payment */
@@ -2183,5 +3866,245 @@ textarea:-webkit-autofill:focus {
     .payment-step-content {
         padding-right: 16px;
         padding-left: 16px;
+    }
+}
+/* Admin property review actions */
+.admin-property-review-actionsN {
+    gap: .5rem;
+}
+
+.admin-property-review-actionsN .admin-property-review-rejectN {
+    background-color: #38362D;
+    color: #FFB200;
+}
+
+.admin-property-review-actionsN .admin-property-review-rejectN:hover,
+.admin-property-review-actionsN .admin-property-review-rejectN:focus-visible {
+    background-color: #454237;
+    color: #FFB200;
+}
+
+.admin-property-review-actionsN .admin-property-review-approveN {
+    background-color: #FFB200;
+    color: #171610;
+}
+
+.admin-property-review-actionsN .admin-property-review-approveN:hover,
+.admin-property-review-actionsN .admin-property-review-approveN:focus-visible {
+    background-color: #ffc233;
+    color: #171610;
+}
+
+/* Admin reservation detail palette and avatar sizing */
+.admin-reservation-detailN {
+    color: #E4DFD8;
+}
+
+.admin-reservation-detail-summaryN {
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.admin-reservation-detail-avatarN {
+    width: 4.25rem;
+    height: 4.25rem;
+    font-size: 2.25rem;
+}
+
+.admin-reservation-detail-contactN {
+    min-width: min(100%, 21rem);
+    font-size: .875rem;
+}
+
+.admin-reservation-detail-panelN {
+    border-color: #38362D !important;
+}
+
+.admin-reservation-detailN .breadcrumb {
+    --bs-breadcrumb-divider: '\203A';
+    --bs-breadcrumb-divider-color: #E4DFD8;
+}
+
+.admin-reservation-detailN .breadcrumb-item.active {
+    color: #FFB200;
+}
+
+.admin-reservation-detailN .min-w-0 {
+    min-width: 0;
+}
+
+
+
+/* Admin review detail colors and sizing */
+.admin-review-detailN { color: #E4DFD8; }
+.admin-review-detail-summaryN { background-color: #38362D; color: #E4DFD8; }
+.admin-review-detail-avatarN { width: 4rem; height: 4rem; font-size: 2rem; }
+.admin-review-detail-panelN { border-color: #38362D !important; }
+.admin-review-detail-empty-starN { color: #A7A49C; }
+.admin-review-detail-commentN { min-height: 6.5rem; border-color: #E4DFD8; background-color: transparent; color: #E4DFD8; white-space: pre-wrap; }
+.admin-review-detailN .min-w-0 { min-width: 0; }
+.admin-review-detailN .breadcrumb { --bs-breadcrumb-divider: '\203A'; --bs-breadcrumb-divider-color: #E4DFD8; }
+.admin-review-detailN .breadcrumb-item.active { color: #FFB200; }
+
+/* Review comment deletion modal uses the AdminUserSuspend dialog dimensions */
+.admin-review-delete-bodyN {
+    padding: 1.5rem 1.85rem 2.25rem;
+}
+
+.admin-review-delete-bodyN > p {
+    font-size: 1.15rem;
+}
+
+.admin-review-delete-selectN {
+    min-height: 3rem;
+    border: 1px solid #E4DFD8;
+    background-color: transparent;
+    color: #E4DFD8;
+}
+
+.admin-review-delete-selectN:focus {
+    border-color: #FFB200;
+    background-color: transparent;
+    color: #E4DFD8;
+    box-shadow: 0 0 0 .2rem rgba(255, 178, 0, .2);
+}
+
+.admin-review-delete-selectN option {
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+@media (max-width: 575.98px) {
+    .admin-review-delete-bodyN {
+        padding: 1.5rem 1.25rem;
+    }
+}
+
+
+
+
+@media (max-width: 991.98px) {
+    .profile-sidebarN .list-group-item.active {
+        color: #E4DFD8;
+        background-color: transparent;
+    }
+
+    .profile-sidebarN .list-group-item.active i {
+        color: inherit;
+    }
+
+    .profile-sidebarN .list-group-item.active::before {
+        display: none;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .account-mobile-contentN .profile-titleN,
+    .account-mobile-contentN .notifications-titleN,
+    .account-mobile-contentN .reservations-titleN,
+    .account-mobile-contentN .destination-reviews-titleN,
+    .account-mobile-contentN .settings-titleN,
+    .account-mobile-contentN > section > h1 {
+        display: none;
+    }
+}
+
+/* Stripe payment success popup */
+.payment-success-dialogN {
+    width: min(34.5rem, calc(100vw - 1.5rem));
+    max-width: none;
+}
+
+.payment-success-modalN {
+    position: relative;
+    border: 1px solid #38362D;
+    border-radius: .75rem;
+    background-color: #38362D;
+    color: #E4DFD8;
+}
+
+.payment-success-bodyN {
+    padding: 1.5rem 1.85rem 2.25rem;
+}
+
+.payment-success-closeN {
+    position: absolute;
+    top: .75rem;
+    right: .85rem;
+    z-index: 1;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #C8C5BD;
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.payment-success-titleN {
+    margin: 0 1.5rem 1.5rem;
+    color: #FFB200;
+    font-size: 1.75rem;
+}
+
+.payment-success-markN {
+    display: flex;
+    width: 3.5rem;
+    height: 3.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #FFB200;
+    color: #24221B;
+    font-size: 2rem;
+}
+
+.payment-success-messageN {
+    font-size: 1.15rem;
+    line-height: 1.2;
+}
+
+.payment-success-closeButtonN,
+.payment-success-homeButtonN {
+    min-height: 2.9rem;
+    flex: 0 1 12rem;
+    border-radius: 50rem;
+    text-decoration: none;
+}
+
+.payment-success-closeButtonN {
+    border: 1px solid #FFB200;
+    color: #FFB200;
+}
+
+.payment-success-closeButtonN:hover,
+.payment-success-closeButtonN:focus-visible {
+    border-color: #FFB200;
+    background-color: rgb(255 178 0 / 10%);
+    color: #FFB200;
+}
+
+.payment-success-homeButtonN {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFB200;
+    color: #24221B;
+}
+
+.payment-success-homeButtonN:hover,
+.payment-success-homeButtonN:focus-visible {
+    background-color: #E9A300;
+    color: #24221B;
+}
+
+@media (max-width: 575.98px) {
+    .payment-success-bodyN {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .payment-success-closeButtonN,
+    .payment-success-homeButtonN {
+        flex-basis: auto;
+        width: 100%;
     }
 }

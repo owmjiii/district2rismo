@@ -5,16 +5,31 @@ import Footer from '../components/Footer.jsx'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import StripePaymentN from '../components/StripePaymentN.jsx'
+import PaymenSuccessfulStripe from '../components/PaymenSuccessfulStripe.jsx'
 
+
+const PENDING_PAYMENT_STORAGE_KEY = 'district2rismo.pendingPayment'
+
+function readPendingPayment() {
+    try {
+        return JSON.parse(sessionStorage.getItem(PENDING_PAYMENT_STORAGE_KEY) || 'null')
+    } catch {
+        return null
+    }
+}
 
 function ConfirmPayment() {
-    const [step, setStep] = useState(1)
-    const [payOption, setPayOption] = useState('full')
-    const [method, setMethod] = useState('gcash')
     const location = useLocation()
     const { state } = location
-    const booking = state?.booking
     const sessionId = new URLSearchParams(location.search).get('session_id')
+    const [pendingPayment, setPendingPayment] = useState(() =>
+        state?.booking ? { booking: state.booking } : readPendingPayment()
+    )
+    const booking = state?.booking || pendingPayment?.booking
+    const [step, setStep] = useState(() => sessionId ? 3 : (pendingPayment?.step || 1))
+    const [payOption, setPayOption] = useState(() => pendingPayment?.payOption || 'full')
+    const [method, setMethod] = useState(() => pendingPayment?.method || 'gcash')
+    const [showPaymentSuccess, setShowPaymentSuccess] = useState(false)
     const [paymentResult, setPaymentResult] = useState({
         loading: Boolean(sessionId),
         error: '',
@@ -54,6 +69,7 @@ function ConfirmPayment() {
                     status: data.status,
                     paymentStatus: data.payment_status,
                 })
+                setShowPaymentSuccess(data.payment_status === 'paid')
             } catch (error) {
                 if (error.name !== 'AbortError') {
                     setPaymentResult({
@@ -70,47 +86,12 @@ function ConfirmPayment() {
         return () => controller.abort()
     }, [sessionId])
 
-    if (sessionId) {
-        const isPaid = paymentResult.paymentStatus === 'paid'
-        const isExpired = paymentResult.status === 'expired'
-
-        return (
-            <div>
-                <Header />
-                <main className='pay-page container-fluid px-3 px-md-5'>
-                    <div className='pay-card'>
-                        <h1 className='pay-title'>
-                            {paymentResult.loading
-                                ? 'Checking your payment...'
-                                : isPaid
-                                    ? 'Payment successful'
-                                    : isExpired
-                                        ? 'Checkout expired'
-                                        : 'Payment not confirmed'}
-                        </h1>
-                        {paymentResult.loading ? (
-                            <p role='status'>Verifying your payment with Stripe...</p>
-                        ) : paymentResult.error ? (
-                            <p className='payment-error' role='alert'>
-                                {paymentResult.error}
-                            </p>
-                        ) : isPaid ? (
-                            <p>Your payment was confirmed by Stripe.</p>
-                        ) : (
-                            <p>
-                                Stripe has not confirmed this payment as paid.
-                                Please start the booking again if you still want to pay.
-                            </p>
-                        )}
-                        <Link className='button' to='/'>
-                            Return to home
-                        </Link>
-                    </div>
-                </main>
-                <Footer />
-            </div>
-        )
-    }
+    useEffect(() => {
+        if (!booking) return
+        const savedPayment = { booking, step, payOption, method }
+        sessionStorage.setItem(PENDING_PAYMENT_STORAGE_KEY, JSON.stringify(savedPayment))
+        setPendingPayment(savedPayment)
+    }, [booking, step, payOption, method])
 
     if (!booking) {
         return <p>Booking details are missing. Please start your booking again.</p>
@@ -148,9 +129,10 @@ function ConfirmPayment() {
 
                 <div className='d-flex align-items-center gap-3 mb-4'>
 
-                    <Link className='icon' to='/resorts/:id'><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" className="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-                        <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
-                    </svg>
+                    <Link className='payment-back-button' to='/resorts/:id' aria-label='Go back'>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 12H5m0 0 7 7m-7-7 7-7" />
+                        </svg>
                     </Link>
 
                     <h1 className='pay-title m-0'>Confirm and Pay</h1>
@@ -265,7 +247,19 @@ function ConfirmPayment() {
                                 <hr className='pay-divider' />
 
                                 {method === 'card' ? (
-                                    <StripePaymentN booking={booking} payOption={payOption} />
+                                    sessionId ? (
+                                        paymentResult.loading ? (
+                                            <p role="status">Verifying your payment with Stripe...</p>
+                                        ) : paymentResult.paymentStatus === 'paid' ? (
+                                            <p>Your payment has been confirmed. See the confirmation popup.</p>
+                                        ) : (
+                                            <p className="payment-error" role="alert">
+                                                {paymentResult.error || 'Payment was not confirmed. Please try again.'}
+                                            </p>
+                                        )
+                                    ) : (
+                                        <StripePaymentN booking={booking} payOption={payOption} />
+                                    )
                                 ) : (
                                     <p className="pay-note">
                                         {methods.find((item) => item.key === method).label} payments
@@ -294,7 +288,7 @@ function ConfirmPayment() {
 
                             <h4 className='field-label'>Guests</h4>
                             <div className='guest-row d-flex justify-content-between align-items-center'>
-                                <span>Adults, (Age 13+)</span>
+                                <span className='guest-label'>Adults, (Age 13+)</span>
                                 <div className='counter d-flex align-items-center gap-2'>
                                     <button aria-label='Decrease adults'>−</button>
                                     <span>6</span>
@@ -302,7 +296,7 @@ function ConfirmPayment() {
                                 </div>
                             </div>
                             <div className='guest-row d-flex justify-content-between align-items-center'>
-                                <span>Kids, (Ages 2-12)</span>
+                                <span className='guest-label'>Kids, (Ages 2-12)</span>
                                 <div className='counter d-flex align-items-center gap-2'>
                                     <button aria-label='Decrease kids'>−</button>
                                     <span>3</span>
@@ -310,7 +304,7 @@ function ConfirmPayment() {
                                 </div>
                             </div>
                             <div className='guest-row d-flex justify-content-between align-items-center'>
-                                <span>Infants, (Under 2)</span>
+                                <span className='guest-label'>Infants, (Under 2)</span>
                                 <div className='counter d-flex align-items-center gap-2'>
                                     <button aria-label='Decrease infants' disabled>−</button>
                                     <span>0</span>
@@ -340,9 +334,18 @@ function ConfirmPayment() {
                 </div>
             </div>
 
+            <PaymenSuccessfulStripe
+                show={showPaymentSuccess}
+                onHide={() => setShowPaymentSuccess(false)}
+                onReturnHome={() => sessionStorage.removeItem(PENDING_PAYMENT_STORAGE_KEY)}
+            />
             <Footer />
         </div>
     )
 }
 
 export default ConfirmPayment
+
+
+
+

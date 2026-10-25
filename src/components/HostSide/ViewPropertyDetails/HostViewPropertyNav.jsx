@@ -8,10 +8,16 @@ const steps = [
     'Verification & Submission',
 ]
 
-export function HostViewPropertyNav({ activeStep, onStepChange, onBack }) {
+export function HostViewPropertyNav({ activeStep,
+    onStepChange,
+    onBack,
+    currentLabel = 'Edit Property',
+    showBreadcrumb = true,
+    compact = false,
+}) {
     return (
-        <header className="px-3 px-md-4 pt-5 pb-3">
-            <nav aria-label="Breadcrumb">
+        <header className={`px-3 px-md-4 ${compact ? 'pt-2' : 'pt-5'} pb-3`}>
+            {showBreadcrumb && <nav aria-label="Breadcrumb">
                 <ol className="breadcrumb small mb-2">
                     <li className="breadcrumb-item">
                         <button
@@ -23,10 +29,10 @@ export function HostViewPropertyNav({ activeStep, onStepChange, onBack }) {
                         </button>
                     </li>
                     <li className="breadcrumb-item active text-warning" aria-current="page">
-                        Edit Property
+                        {currentLabel}
                     </li>
                 </ol>
-            </nav>
+            </nav>}
 
             <nav aria-label="Property editing steps">
                 <div className="nav nav-pills flex-nowrap gap-2 overflow-x-auto pb-2 mt-1">
@@ -38,9 +44,8 @@ export function HostViewPropertyNav({ activeStep, onStepChange, onBack }) {
                             <button
                                 key={label}
                                 type="button"
-                                className={`btn btn-sm rounded-pill flex-shrink-0 text-nowrap px-3 ${
-                                    isActive ? 'btn-warning' : 'btn-outline-warning'
-                                }`}
+                                className={`btn btn-sm rounded-pill flex-shrink-0 text-nowrap px-3 ${isActive ? 'btn-warning' : 'btn-outline-warning'
+                                    }`}
                                 aria-current={isActive ? 'step' : undefined}
                                 onClick={() => onStepChange?.(step)}
                             >
@@ -53,3 +58,9 @@ export function HostViewPropertyNav({ activeStep, onStepChange, onBack }) {
         </header>
     )
 }
+
+
+
+
+
+
