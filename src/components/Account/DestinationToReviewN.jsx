@@ -123,7 +123,7 @@ export const DestinationToReviewN = () => {
                                     <span>{category}</span>
                                     <span className="d-flex gap-1">
                                         {[1, 2, 3, 4, 5].map((star) => (
-                                            <button key={star} type="button" className="btn p-0 destination-starN" aria-label={`${category}: ${star} stars`} disabled={destination.reviewed} onClick={() => setRating(destination.id, category, star)}>
+                                            <button key={star} type="button" className="btn p-0  destination-starN" aria-label={`${category}: ${star} stars`} disabled={destination.reviewed} onClick={() => setRating(destination.id, category, star)}>
                                                 <i className={`bi ${star <= (ratings[destination.id]?.[category] ?? (destination.reviewed ? destination.rating : 0)) ? 'bi-star-fill text-warning' : 'bi-star'}`} aria-hidden="true" />
                                             </button>
                                         ))}
