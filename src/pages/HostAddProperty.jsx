@@ -137,10 +137,10 @@ export function HostAddProperty({ onBack, onNext, onReject, onApprove, onRemoveU
             </fieldset>
 
             {isReview && (
-                <div className="d-flex justify-content-end gap-2 px-3 px-md-4 px-lg-5 pb-4 mx-2 admin-property-review-actionsN">
+                <div className="d-flex flex-wrap justify-content-end gap-3 mt-3  admin-property-review-actionsN">
                     <button
                         type="button"
-                        className="btn rounded-pill px-5 py-2 admin-property-review-rejectN"
+                        className="btn rounded-pill admin-property-review-rejectN admin-user-account-buttonN"
                         onClick={handleReject}
                     >
                         {reviewAction ? 'Remove' : 'Reject'}
@@ -148,7 +148,7 @@ export function HostAddProperty({ onBack, onNext, onReject, onApprove, onRemoveU
 
                     <button
                         type="button"
-                        className="btn rounded-pill px-5 py-2 admin-property-review-approveN"
+                        className="btn rounded-pill admin-property-review-approveN admin-user-account-buttonN"
                         onClick={handleApprove}
                     >
                         {reviewAction === 'rejected' ? 'Unhide' : reviewAction === 'approved' ? 'Hide' : 'Approved'}
@@ -158,6 +158,12 @@ export function HostAddProperty({ onBack, onNext, onReject, onApprove, onRemoveU
         </main>
     )
 }
+
+
+
+
+
+
 
 
 

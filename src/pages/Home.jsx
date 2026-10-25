@@ -9,7 +9,11 @@ function Home() {
     return (
         <div>
             <Hero />
-            
+            {/* <Link to="/account">Account</Link>
+            <Link to="/host">Host</Link>
+            <Link to={import.meta.env.DEV ? '/admin-preview' : '/admin'}>
+                Admin
+            </Link> */}
             <Featured />
             <Footer />
         </div>

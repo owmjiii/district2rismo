@@ -1,10 +1,10 @@
-ï»¿import { useState } from 'react'
+import { useState } from 'react'
 import { AdminNavbar } from './AdminNavbar.jsx'
 import { AdminHostRevoke } from './AdminHostRevoke.jsx'
 import { AdminHostDeactivate } from './AdminHostDeactivate.jsx'
 
 const sampleProperties = [
-    { name: 'Fabianâ€™s Azzure', location: 'Bustos', status: 'Approved' },
+    { name: 'Fabian’s Azzure', location: 'Bustos', status: 'Approved' },
     { name: 'Villa Sirena', location: 'Bustos', status: 'Pending' },
 ]
 
@@ -60,7 +60,7 @@ export function AdminHostDetails({
                                 <dt className="col-sm-6 fw-normal py-2">Email</dt>
                                 <dd className="col-sm-6 text-sm-end py-2">{host.email}</dd>
                                 <dt className="col-sm-6 fw-normal py-2">Phone</dt>
-                                <dd className="col-sm-6 text-sm-end py-2">{host.phone || 'â€”'}</dd>
+                                <dd className="col-sm-6 text-sm-end py-2">{host.phone || '—'}</dd>
                                 <dt className="col-sm-6 fw-normal py-2">Verification Status</dt>
                                 <dd className="col-sm-6 text-sm-end text-warning py-2">{host.status}</dd>
                             </dl>
@@ -84,15 +84,15 @@ export function AdminHostDetails({
                             </div>
                         </section>
 
-                        <div className="d-flex flex-wrap justify-content-end gap-2">
+                        <div className="d-flex flex-wrap justify-content-end gap-3">
+                            <button type="button" className="btn admin-host-deactivateN admin-user-account-buttonN" onClick={() => setShowDeactivate(true)}>
+                                Deactivate Account
+                            </button>
                             {host.status === 'Verified' && (
-                                <button type="button" className="btn admin-host-revokeN" onClick={() => setShowRevoke(true)}>
+                                <button type="button" className="btn admin-host-revokeN admin-user-account-buttonN" onClick={() => setShowRevoke(true)}>
                                     Revoke Verification
                                 </button>
                             )}
-                            <button type="button" className="btn admin-host-deactivateN" onClick={() => setShowDeactivate(true)}>
-                                Deactivate Account
-                            </button>
                         </div>
                     </section>
                 </div>

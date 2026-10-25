@@ -1587,7 +1587,7 @@ textarea:-webkit-autofill:focus {
 
 .host-add-propertyN .breadcrumb-item+.breadcrumb-item::before {
     color: #E4DFD8;
-    content: "â€º";
+    content: "›";
 }
 
 .host-add-property-crumbN,
@@ -3093,8 +3093,8 @@ textarea:-webkit-autofill:focus {
 }
 
 .admin-user-reviewN {
-    width: min(36rem, 100%);
-    min-height: 46.25rem;
+    width: min(34rem, 100%);
+    min-height: 44rem;
     max-width: 100%;
     height: auto;
     border: 1px solid #38362D !important;
@@ -3112,14 +3112,14 @@ textarea:-webkit-autofill:focus {
 }
 
 .admin-user-review-topN {
-    min-height: 13.2rem;
+    min-height: 12.4rem;
     align-items: center;
-    flex: 0 0 13.2rem;
+    flex: 0 0 12.4rem;
 }
 
 .admin-user-review-imageN {
-    width: 11.5rem;
-    height: 11.5rem;
+    width: 10.8rem;
+    height: 10.8rem;
     object-fit: cover;
 }
 
@@ -3128,7 +3128,7 @@ textarea:-webkit-autofill:focus {
 }
 
 .admin-user-review-summaryN h3 {
-    font-size: 1.75rem;
+    font-size: 1.65rem;
     line-height: 1.15;
 }
 
@@ -3149,15 +3149,15 @@ textarea:-webkit-autofill:focus {
 }
 
 .admin-user-review-summaryN .text-warning[aria-label] {
-    font-size: 1.75rem;
+    font-size: 1.65rem;
     letter-spacing: .1em;
 }
 
 .admin-user-review-contentN {
     background-color: #302E27;
     color: #E4DFD8;
-    padding: 1.25rem;
-    font-size: 1.25rem;
+    padding: 1.1rem;
+    font-size: 1.15rem;
     flex: 1 0 auto;
 }
 
@@ -3182,7 +3182,7 @@ textarea:-webkit-autofill:focus {
 }
 
 .admin-user-review-contentN>.d-flex {
-    min-height: 2.2rem;
+    min-height: 2.05rem;
     align-items: center;
 }
 
@@ -3210,25 +3210,25 @@ textarea:-webkit-autofill:focus {
 
     .admin-user-reviewN {
         width: 100%;
-        min-height: 46.25rem;
+        min-height: 44rem;
     }
 
     .admin-user-review-topN {
-        min-height: 13.2rem;
-        flex-basis: 13.2rem;
+        min-height: 12.4rem;
+        flex-basis: 12.4rem;
     }
 
     .admin-user-review-imageN {
-        width: clamp(8rem, 35vw, 11.5rem);
-        height: clamp(8rem, 35vw, 11.5rem);
+        width: clamp(7.5rem, 33vw, 10.8rem);
+        height: clamp(7.5rem, 33vw, 10.8rem);
     }
 
     .admin-user-review-summaryN h3 {
-        font-size: clamp(1.25rem, 5vw, 1.75rem);
+        font-size: clamp(1.2rem, 4.7vw, 1.65rem);
     }
 
     .admin-user-review-contentN {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
     }
 }
 
@@ -3238,10 +3238,10 @@ textarea:-webkit-autofill:focus {
 }
 
 .admin-user-account-buttonN {
-    min-width: 18.5rem;
-    padding: 1rem 2.5rem;
+    min-width: 17rem;
+    padding: 0.875rem 2rem;
     border-radius: 50rem;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
 }
 
 /* Admin user deactivation */
@@ -3873,6 +3873,9 @@ textarea:-webkit-autofill:focus {
     gap: .5rem;
 }
 
+
+
+
 .admin-property-review-actionsN .admin-property-review-rejectN {
     background-color: #38362D;
     color: #FFB200;
@@ -4108,3 +4111,11 @@ textarea:-webkit-autofill:focus {
         width: 100%;
     }
 }
+
+
+
+
+
+
+
+

@@ -101,12 +101,15 @@ export function AdminReviewDetails({ review, onBack, onDelete }) {
                 <div className="form-control admin-review-detail-commentN" role="textbox" aria-readonly="true">{review.comment || '\u2014'}</div>
             </section>
 
-            <div className="d-flex justify-content-end px-2 pb-2">
-                <button type="button" className="btn btn-warning rounded-pill px-4" onClick={() => setShowDeleteModal(true)}>Delete Comment</button>
+            <div className="d-flex flex-wrap justify-content-end gap-3">
+                <button type="button" className="btn btn-warning rounded-pill admin-user-account-buttonN" onClick={() => setShowDeleteModal(true)}>Delete Comment</button>
             </div>
         <AdminReviewDelete show={showDeleteModal} review={review} onHide={() => setShowDeleteModal(false)} onConfirm={onDelete} />
         </section>
     )
 }
+
+
+
 
 
