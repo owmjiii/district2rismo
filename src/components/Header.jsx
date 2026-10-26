@@ -32,7 +32,6 @@ function Header() {
                 </Link>
 
                 <div className='d-flex align-items-center navi-container'>
-                    <span className='header-link text-decoration-none' onClick={() => setShowLogin(true)}>List your Property</span>
                     
                     <button type="button" aria-label="Log in or sign up" onClick={() => setShowLogin(true)} className="bg-transparent border-0 text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 18 18">

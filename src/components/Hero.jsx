@@ -53,7 +53,7 @@ function Hero() {
 
                         <div className='subtext-container mt-lg-5 mt-2'>
                             <span>
-                                Discover refreshing getaways, and exceptional hotel and resort destinations of
+                                Discover refreshing getaways, and exceptional private resort destinations of
                                 Bulacan’s 2nd District. Your next memorable escape begins here with District 2rismo.
                             </span>
                         </div>
